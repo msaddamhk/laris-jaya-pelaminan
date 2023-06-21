@@ -1,0 +1,161 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.hiro {
+    background-position: center;
+    height: 100vh;
+    background-size: cover;
+    position: relative;
+}
+
+.hiro::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(231, 231, 231, 0.1), #000000 95.66%);
+    position: absolute;
+    bottom: 0;
+}
+
+.hiro h1 {
+    font-size: 90px;
+    font-weight: 600;
+    color: #dad7d0;
+
+}
+
+.hiro h2 {
+    font-size: 62px;
+    font-weight: 800;
+}
+
+.hiro2 {
+    background-image: url('../gambar/hiro/hiro2.jpg');
+    background-position: center;
+    height: 250px;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
+}
+
+.hiro2::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(231, 231, 231, 0.1), #00103d 96.66%);
+    position: absolute;
+    bottom: 0;
+}
+
+.faq {
+    border: 1px solid #000000;
+    box-shadow: 5px #000000;
+    margin-top: 15px;
+}
+
+.footer {
+    background:
+        url(../gambar/ft.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card {
+    border-radius: 13px;
+    box-shadow: 1px 1px 20px rgba(229, 229, 229, 0.1);
+}
+
+.padding {
+    padding-bottom: 120px;
+}
+
+.padding-top {
+    padding-top: 110px;
+}
+
+.margin-top {
+    margin-top: 100px;
+}
+
+.margin-top-bottom {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.py {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.bg-spesialis {
+    background-color: #fafafa;
+}
+
+.fs {
+    font-size: 14px;
+}
+
+.input-group .input-spinner {
+    text-align: center;
+}
+
+.input-group .spinner-btn {
+    cursor: pointer;
+}
+
+
+.galeri {
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.galeri::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom,
+            rgba(231, 231, 231, 0.1),
+            rgba(0, 0, 0, 1));
+    position: absolute;
+    bottom: 0;
+}
+
+.text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: white;
+}
+
+.garis {
+    position: absolute;
+    left: 0;
+    color: white;
+    border-radius: 100%;
+}
+
+@media (max-width: 500.98px) {
+    .hiro {
+        background-size: cover;
+        animation: none;
+    }
+
+    .hiro h1 {
+        font-size: 65px;
+    }
+
+    .hiro h2 {
+        font-size: 45px;
+    }
+
+    .kerjasama img {
+        width: 77%;
+    }
+
+}
