@@ -23,4 +23,9 @@ class JasaOpsiItem extends Model
     {
         return $this->belongsTo(JasaOpsi::class, 'opsi_jasa_id');
     }
+
+    public function pemesananItemOpsi()
+    {
+        return $this->hasMany(PemesananItemOpsi::class, 'jasa_item_opsi_id');
+    }
 }

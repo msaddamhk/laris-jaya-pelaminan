@@ -41,6 +41,8 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> --}}
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+
 </head>
 
 <body style="font-family: 'Playfair Display', serif">
@@ -80,11 +82,11 @@
                             Hi,{{ auth('')->user()->name }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Pesanan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('terpesan') }}">Pesanan</a></li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">Keluar
+                            document.getElementById('logout-form').submit();">Keluar
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -187,14 +189,14 @@
 
     <script src="{{ asset('asset/js/js.js') }}"></script>
 
-    @stack('scripts')
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
     </script>
+
+    @stack('scripts')
 </body>
 
 </html>

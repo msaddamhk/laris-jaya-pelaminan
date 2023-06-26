@@ -41,4 +41,14 @@ class Jasa extends Model
     {
         return $this->hasMany(JasaOpsi::class);
     }
+
+    public function pemesananItems()
+    {
+        return $this->hasMany(PemesananItem::class);
+    }
+
+    public function pemesanan()
+    {
+        return $this->hasManyThrough(Pemesanan::class, PemesananItem::class, 'jasa_id', 'id');
+    }
 }

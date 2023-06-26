@@ -35,13 +35,17 @@ Route::get('/', [BerandaController::class, 'index'])->name('home');
 
 Route::get('/detail-jasa/{jasa}', [DetailJasaController::class, 'index'])->name('detail');
 
-Route::get('/beli-sekarang', [OrderController::class, 'index'])->name('order.index');
+Route::get('/beli-sekarang', [OrderController::class, 'index'])->name('order.index')->middleware('auth');
+
+Route::post('/beli-sekarang/store', [OrderController::class, 'store'])->name('order.store');
 
 
 Route::middleware('auth')->group(function () {
 
     // Route::middleware('can:isAdmin')->group(function () {
     // });
+
+    Route::get('/pesanan', [OrderController::class, 'terpesan'])->name('terpesan');
 
     Route::middleware('can:isAdmin')->group(function () {
 

@@ -17,7 +17,7 @@ class LoginController extends Controller
         if (auth()->user()->level == "ADMIN") {
             return redirect()->route('kategori.index');
         }
-        return redirect()->route('home.index');
+        return redirect()->route('home');
     }
 
     public function logout()
@@ -28,11 +28,9 @@ class LoginController extends Controller
         request()->session()->regenerateToken();
 
         if (auth()->check() && auth()->user()->level == "ADMIN") {
-
             return redirect()->route('kategori.index');
         } else {
-
-            return redirect()->route('home.index');
+            return redirect()->route('home');
         }
     }
 
