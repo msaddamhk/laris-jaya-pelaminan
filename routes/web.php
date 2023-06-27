@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/google', [GoogleController::class, 'index'])->name('google.index');
 
@@ -41,7 +41,7 @@ Route::get('/seluruh-jasa', [UserJasaController::class, 'index'])->name('home.ja
 
 Route::get('/detail-jasa/{jasa}', [DetailJasaController::class, 'index'])->name('detail');
 
-Route::get('/beli-sekarang', [OrderController::class, 'index'])->name('order.index')->middleware('auth');
+Route::get('/beli-sekarang', [OrderController::class, 'index'])->name('order.index')->middleware(['auth', 'verified']);
 
 Route::post('/beli-sekarang/store', [OrderController::class, 'store'])->name('order.store');
 
