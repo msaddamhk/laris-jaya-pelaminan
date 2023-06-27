@@ -29,8 +29,8 @@
         <div class="form-group mb-3">
             <select class="form-select" aria-label="Default select example" name="tipe" required>
                 <option selected>Pilih</option>
-                <option value="text" {{ $jasaopsi->tipe == 'text' ? 'selected' : '' }}>text</option>
                 <option value="radio" {{ $jasaopsi->tipe == 'radio' ? 'selected' : '' }}>radio</option>
+                {{-- <option value="select" {{ $jasaopsi->tipe == 'select' ? 'selected' : '' }}>select</option> --}}
             </select>
 
             @error('tipe')

@@ -56,4 +56,5 @@
             @endforelse
         </tbody>
     </table>
+    {{ $kategori->links() }}
 @endsection

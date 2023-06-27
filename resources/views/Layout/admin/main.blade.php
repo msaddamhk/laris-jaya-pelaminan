@@ -59,7 +59,8 @@
                     <i class="fab fa-cc-visa me-2"></i>
                     Kelola Rekening Bank
                 </a>
-                <a href="" class="item-menu">
+                <a href="{{ route('pemesanan.index') }}"
+                    class="item-menu {{ Request::is('kelola-pemesanan*') ? 'active' : '' }}">
                     <i class="fa-solid fa-bag-shopping me-2"></i>
                     Kelola Pesanan
                 </a>
@@ -97,8 +98,6 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-end gap-3">
-                    <i class="bi bi-arrow-left" onclick="window.history.back()"></i>
-
                     <button class="sidebarCollapseDefault bg-transparent p-0 border-0 d-none d-md-block"
                         aria-label="Hamburger Button">
                         <i class="bi bi-list"></i>

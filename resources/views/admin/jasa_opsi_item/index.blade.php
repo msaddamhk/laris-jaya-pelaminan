@@ -46,7 +46,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $items->label }}</td>
                         <td>{{ $items->value }}</td>
-                        <td>{{ $items->harga }}</td>
+                        <td>Rp {{ number_format($items->harga) }}</td>
                         <td>
                             <a href="{{ route('opsi.item.edit', [$jasa, $jasaopsi, $items]) }}"
                                 class="btn btn-primary btn-sm">Edit</a>

@@ -51,9 +51,10 @@
 
                     <hr />
 
-                    <form action="{{ route('order.index') }}" method="GET">
+                    <form action="{{ route('order.index') }}" method="GET" id="myForm">
 
                         <label for="datepicker" class="mb-2">Pilih Tanggal Acara</label>
+
                         <div class="input-group mb-3">
                             <input type="text" name="tanggal_reservasi" class="form-control" id="datepicker"
                                 placeholder="Silahkan pilih tanggal yang tersedia" required>
@@ -112,6 +113,18 @@
                 disable: bookedDates,
                 dateFormat: "Y-m-d",
                 minDate: "today",
+                required: true
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var datepicker = document.getElementById("datepicker");
+            var form = document.getElementById("myForm");
+            form.addEventListener("submit", function(event) {
+                if (!datepicker.value) {
+                    event.preventDefault();
+                    alert("Mohon pilih tanggal.");
+                }
             });
         });
     </script>

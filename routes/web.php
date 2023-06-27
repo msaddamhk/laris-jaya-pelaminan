@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\JasaOpsiController;
 use App\Http\Controllers\admin\JasaOpsiItemController;
 use App\Http\Controllers\admin\KategoriController;
 use App\Http\Controllers\admin\KelolaAdminController;
+use App\Http\Controllers\admin\KelolaPesananController;
 use App\Http\Controllers\admin\RekeningBankController;
 use App\Http\Controllers\admin\VendorController;
 use App\Http\Controllers\GoogleController;
@@ -94,5 +95,8 @@ Route::middleware('auth')->group(function () {
 
         Route::delete('/jasa/{jasa}/opsi/{jasaopsi}/{jasaopsiitem}/hapus', [JasaOpsiItemController::class, 'destroy'])
             ->name('opsi.item.destroy');
+
+        Route::get('/kelola-pemesanan', [KelolaPesananController::class, 'index'])
+            ->name('pemesanan.index');
     });
 });

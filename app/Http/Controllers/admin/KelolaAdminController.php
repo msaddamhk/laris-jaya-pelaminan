@@ -13,7 +13,7 @@ class KelolaAdminController extends Controller
      */
     public function index()
     {
-        $users = User::where('level', 'ADMIN')->where('name', 'like', '%' . request('cari') . '%')->paginate(15);;
+        $users = User::where('level', 'ADMIN')->where('name', 'like', '%' . request('cari') . '%')->paginate(15);
         return view('admin.data_admin.index', compact('users'));
     }
 

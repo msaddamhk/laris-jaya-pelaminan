@@ -51,11 +51,13 @@
                                 @endphp
                             @endforeach
                         @endforeach
+                        <p class="mt-3">Custom Pesanan</p>
+
+                        <hr />
 
                         @foreach ($jasa->jasaOpsi as $opsi)
                             <small class="text-muted">{{ $opsi->nama }}</small>
-                            <hr />
-                            <div class="d-flex gap-3">
+                            <div class="d-flex gap-3 mt-1">
                                 @foreach ($opsi->jasaItems as $item)
                                     <div>
                                         <input type="{{ $opsi->tipe }}"
@@ -69,30 +71,37 @@
                             </div>
                         @endforeach
 
-                        <input type="number" class="form-control" name="jasa" value="{{ $jasa->id }}"
-                            id="exampleFormControlInput1" placeholder="" hidden />
-
+                        <p class="mt-3">Jumlah</p>
+                        <hr>
                         <input type="number" class="form-control" name="jumlah" value="{{ request()->get('jumlah') }}"
+                            id="exampleFormControlInput1" placeholder="" required />
+
+                        <input type="number" class="form-control" name="jasa" value="{{ $jasa->id }}"
                             id="exampleFormControlInput1" placeholder="" hidden />
 
                         <input type="date" class="form-control" name="tanggal"
                             value="{{ request()->get('tanggal_reservasi') }}" id="exampleFormControlInput1" placeholder=""
                             hidden />
-
-                        <hr>
                     </div>
+
+
                     <div class="col-md-4">
                         <div class="card p-3">
+
                             @foreach ($bank as $item)
                                 <small class="text-muted">Nama Bank : {{ $item->nama_bank }}</small>
                                 <small class="text-muted">No Rekening : {{ $item->no_rekening }}</small>
                                 <hr>
                             @endforeach
+
                             <small class="mb-2">Upload Bukti Pembayaran</small>
                             <input type="file" class="form-control mb-2" name="bukti_pembayaran">
+
                             <small class="mb-2" style="font-size: 10px">* Silahkan Lewati jika ingin membayar
                                 nanti</small>
                             <h6 class="fw-bold">Total : Rp {{ number_format($totalHarga) }}</h6>
+
+
                             <button type="submit" class="btn btn-success btn-sm" style="font-size: 12px">
                                 <i class="bi bi-wallet"></i> Bayar Sekarang
                             </button>

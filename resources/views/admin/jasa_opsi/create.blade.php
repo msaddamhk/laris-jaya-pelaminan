@@ -28,8 +28,8 @@
         <div class="form-group mb-3">
             <select class="form-select" aria-label="Default select example" name="tipe" required>
                 <option selected>Pilih</option>
-                <option value="text">text</option>
                 <option value="radio">radio</option>
+                {{-- <option value="select">select</option> --}}
             </select>
 
             @error('tipe')
