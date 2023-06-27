@@ -57,12 +57,12 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($item->status_pembayaran == 1)
+                                @if ($item->bukti_pembayaran == 'null')
+                                    -
+                                @else
                                     <a href="{{ asset('/storage/bukti_pembayaran/' . $item->bukti_pembayaran) }}" download>
                                         Unduh Bukti Pembayaran
                                     </a>
-                                @else
-                                    -
                                 @endif
                             </td>
                         @endforeach

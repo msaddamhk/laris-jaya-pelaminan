@@ -12,6 +12,8 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\user\BerandaController;
 use App\Http\Controllers\user\DetailJasaController;
+use App\Http\Controllers\user\JasaController as UserJasaController;
+use App\Http\Controllers\user\UpdateUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +30,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+
 Route::get('/google', [GoogleController::class, 'index'])->name('google.index');
+
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 
-
 Route::get('/', [BerandaController::class, 'index'])->name('home');
+
+Route::get('/seluruh-jasa', [UserJasaController::class, 'index'])->name('home.jasa');
 
 Route::get('/detail-jasa/{jasa}', [DetailJasaController::class, 'index'])->name('detail');
 
@@ -43,8 +48,9 @@ Route::post('/beli-sekarang/store', [OrderController::class, 'store'])->name('or
 
 Route::middleware('auth')->group(function () {
 
-    // Route::middleware('can:isAdmin')->group(function () {
-    // });
+    Route::get('/update-profil/{user}', [UpdateUserController::class, 'index'])->name('home.update.profile');
+
+    Route::put('/update-profil/{user}/store', [UpdateUserController::class, 'update'])->name('home.update.profile.update');
 
     Route::get('/pesanan', [OrderController::class, 'terpesan'])->name('terpesan');
 

@@ -80,6 +80,11 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('terpesan') }}">Pesanan</a></li>
                             <li>
+                                <a class="dropdown-item"
+                                    href="{{ route('home.update.profile', auth()->user()->id) }}">Update Profil
+                                </a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">Keluar

@@ -27,6 +27,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row mt-4">
                 <div class="col-md-8" data-aos="fade-in" data-aos-delay="300">
                     <h1 class="ps-2"
@@ -65,10 +66,13 @@
                         <input type="text" name="jasa" class="form-control" value="{{ $jasa->id }}"
                             id="datepicker" placeholder="Select a date" hidden>
 
+                        <p class="mt-2">Custom Pesanan</p>
+
+                        <hr>
+
                         @foreach ($jasa->jasaOpsi as $opsi)
-                            <small class="text-muted">{{ $opsi->nama }}</small>
-                            <hr />
-                            <div class="d-flex gap-3">
+                            <small class="mb-2">{{ $opsi->nama }}</small>
+                            <div class="d-flex gap-3 mb-3 text-muted">
                                 @foreach ($opsi->jasaItems as $item)
                                     <div>
                                         <input type="{{ $opsi->tipe }}"
@@ -76,7 +80,8 @@
                                             name="{{ str()->slug($opsi->nama) }}" value="{{ $item->id }}"
                                             @checked(request(str()->slug($opsi->nama)) == $item->id)>
                                         <label for="{{ str()->slug($opsi->nama) . $loop->iteration }}">{{ $item->label }}
-                                            Rp {{ number_format($item->harga) }}</label>
+                                            (Rp {{ number_format($item->harga) }})
+                                        </label>
                                     </div>
                                 @endforeach
                             </div>

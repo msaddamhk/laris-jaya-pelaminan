@@ -29,7 +29,7 @@
             </div>
 
             <div class="mt-3 d-flex justify-content-lg-center">
-                <a href="" class="btn btn-outline-dark" style="font-size: 13px">Selengkapnya -></a>
+                <a href="{{ route('home.jasa') }}" class="btn btn-outline-dark" style="font-size: 13px">Selengkapnya -></a>
             </div>
         </div>
     </section>

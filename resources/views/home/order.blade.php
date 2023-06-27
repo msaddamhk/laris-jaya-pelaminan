@@ -64,8 +64,9 @@
                                             id="{{ str()->slug($opsi->nama) . $loop->iteration }}"
                                             name="{{ str()->slug($opsi->nama) }}" value="{{ $item->id }}"
                                             @checked(request(str()->slug($opsi->nama)) == $item->id)>
-                                        <label
-                                            for="{{ str()->slug($opsi->nama) . $loop->iteration }}">{{ $item->label }}</label>
+                                        <label for="{{ str()->slug($opsi->nama) . $loop->iteration }}">{{ $item->label }}
+                                            (Rp {{ number_format($item->harga) }})
+                                        </label>
                                     </div>
                                 @endforeach
                             </div>

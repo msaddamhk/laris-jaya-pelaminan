@@ -47,7 +47,7 @@ class OrderController extends Controller
                 $pemesanan->bukti_pembayaran = $request->bukti_pembayaran->hashName();
             } else {
                 $pemesanan->status_pembayaran = false;
-                $pemesanan->bukti_pembayaran = "12";
+                $pemesanan->bukti_pembayaran = "null";
             }
 
             $pemesanan->save();
