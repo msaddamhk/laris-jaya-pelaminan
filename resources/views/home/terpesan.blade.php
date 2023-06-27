@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <div class="container py-5">
-
+            <h6 class="mb-3">Daftar Pesanan</h6>
             @foreach ($terpesan as $item)
                 <div class="card py-4 px-3 mb-4">
                     <div class="table-responsive">

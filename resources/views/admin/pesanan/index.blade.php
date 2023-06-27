@@ -2,21 +2,20 @@
 
 @section('content')
     <div class="d-flex justify-content-between">
-        <h5>Kelola Pesanan</h5>
+        <h5 class="my-auto">Kelola Pesanan</h5>
+
+        <form action="{{ route('pemesanan.index') }}" method="GET">
+            <div class="d-flex me-2">
+                <input type="text" name="cari" value="{{ request('cari') }}"
+                    placeholder="Masukkan No Pesanan"class="form-control me-2" />
+                <button class="btn btn-search d-flex justify-content-center align-items-center p-0" type="submit">
+                    <img src="{{ asset('asset/admin/images/ic_search.svg') }}" width="20px" height="20px" />
+                </button>
+            </div>
+        </form>
     </div>
 
     <hr>
-
-    <form action="{{ route('pemesanan.index') }}" method="GET">
-        <div class="d-flex me-2 mt-2 mb-3">
-            <input type="text" name="cari" value="{{ request('cari') }}"
-                placeholder="Cari Data..."class="form-control me-2" />
-            <button class="btn btn-search d-flex justify-content-center align-items-center p-0" type="submit">
-                <img src="{{ asset('asset/admin/images/ic_search.svg') }}" width="20px" height="20px" />
-            </button>
-        </div>
-    </form>
-
 
     <div class="table-responsive">
         <table class="table">

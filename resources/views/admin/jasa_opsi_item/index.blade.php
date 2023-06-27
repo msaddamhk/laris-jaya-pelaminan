@@ -3,12 +3,23 @@
 @section('content')
     <div class="container">
 
+
+        <h5>List Item di Opsi {{ $jasaopsi->nama }}</h5>
+
         <div class="d-flex justify-content-between">
-            <h5>List Item di Opsi {{ $jasaopsi->nama }}</h5>
             <div class="my-auto">
                 <a href="{{ route('opsi.item.create', [$jasa, $jasaopsi]) }}" class="btn btn-primary btn-sm">
                     Tambah Opsi</a>
             </div>
+            <form action="{{ route('opsi.item.index', [$jasa, $jasaopsi]) }}" method="GET">
+                <div class="d-flex me-2">
+                    <input type="text" name="cari" value="{{ request('cari') }}"
+                        placeholder="Masukkan label Item"class="form-control me-2" />
+                    <button class="btn btn-search d-flex justify-content-center align-items-center p-0" type="submit">
+                        <img src="{{ asset('asset/admin/images/ic_search.svg') }}" width="20px" height="20px" />
+                    </button>
+                </div>
+            </form>
         </div>
 
         @if (session('success'))
@@ -18,17 +29,6 @@
         @endif
 
         <hr>
-
-        <form action="{{ route('opsi.item.index', [$jasa, $jasaopsi]) }}" method="GET">
-            <div class="d-flex me-2 mt-2 mb-3">
-                <input type="text" name="cari" value="{{ request('cari') }}"
-                    placeholder="Cari Data..."class="form-control me-2" />
-                <button class="btn btn-search d-flex justify-content-center align-items-center p-0" type="submit">
-                    <img src="{{ asset('asset/admin/images/ic_search.svg') }}" width="20px" height="20px" />
-                </button>
-            </div>
-        </form>
-
 
         <table class="table">
             <thead>

@@ -48,7 +48,7 @@
 <body style="font-family: 'Playfair Display', serif">
     <nav class="navbar navbar-expand-lg bg-black py-3">
         <div class="container text-center">
-            <a class="navbar-brand text-white" href="#">
+            <a class="navbar-brand text-white" href="{{ route('home') }}">
                 <img src="{{ asset('asset/gambar/logo2.png') }}" alt="" width="100%" height="40" />
             </a>
 
@@ -60,19 +60,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mx-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="#">Beranda</a>
+                        <a class="nav-link navlinkcolor" href="{{ route('home') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="#about">Tentang Kami</a>
+                        <a class="nav-link navlinkcolor" href="{{ route('home') }}#about">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="#keunggulan">Keunggulan</a>
+                        <a class="nav-link navlinkcolor" href="{{ route('home') }}#keunggulan">Keunggulan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="#produk">Produk</a>
+                        <a class="nav-link navlinkcolor" href="{{ route('home') }}#produk">Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="#faq">Faq</a>
+                        <a class="nav-link navlinkcolor" href="{{ route('home') }}#faq">Faq</a>
                     </li>
                 </ul>
                 @auth

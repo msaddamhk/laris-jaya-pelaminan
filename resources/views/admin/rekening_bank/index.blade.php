@@ -1,11 +1,20 @@
 @extends('layout.admin.main')
 
 @section('content')
+    <h5>Rekening Bank</h5>
     <div class="d-flex justify-content-between">
-        <h5>Rekening Bank</h5>
         <div class="my-auto">
             <a href="{{ route('rekening.create') }}" class="btn btn-primary">Tambah Rekening</a>
         </div>
+        <form action="{{ route('rekening.index') }}" method="GET">
+            <div class="d-flex me-2">
+                <input type="text" name="cari" value="{{ request('cari') }}"
+                    placeholder="Masukkan nama Bank"class="form-control me-2" />
+                <button class="btn btn-search d-flex justify-content-center align-items-center p-0" type="submit">
+                    <img src="{{ asset('asset/admin/images/ic_search.svg') }}" width="20px" height="20px" />
+                </button>
+            </div>
+        </form>
     </div>
 
     @if (session('success'))
@@ -16,15 +25,6 @@
 
     <hr>
 
-    <form action="{{ route('rekening.index') }}" method="GET">
-        <div class="d-flex me-2 mt-2 mb-3">
-            <input type="text" name="cari" value="{{ request('cari') }}"
-                placeholder="Cari Data..."class="form-control me-2" />
-            <button class="btn btn-search d-flex justify-content-center align-items-center p-0" type="submit">
-                <img src="{{ asset('asset/admin/images/ic_search.svg') }}" width="20px" height="20px" />
-            </button>
-        </div>
-    </form>
 
     <table class="table">
         <thead>

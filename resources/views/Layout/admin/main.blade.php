@@ -86,7 +86,8 @@
                                 Logout
                             </button>
                         </form>
-                        <a href="" class="text-decoration-none ms-2 text-dark">Update Data</a>
+                        <a href="{{ route('data-admin.edit', auth()->user()->id) }}"
+                            class="text-decoration-none ms-2 text-dark">Update Data</a>
                     </ul>
                 </div>
             </div>
