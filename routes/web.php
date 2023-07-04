@@ -54,6 +54,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/pesanan', [OrderController::class, 'terpesan'])->name('terpesan');
 
+    Route::get('/pesanan/{pemesanan}/edit', [OrderController::class, 'edit'])->name('edit.pesanan');
+
+    Route::get('/pesanan/{pemesanan}/download-invoice', [OrderController::class, 'pdf'])->name('invoice');
+
+    Route::post('/pesanan/{pemesanan}/update', [OrderController::class, 'update'])->name('update.pesanan');
+
     Route::middleware('can:isAdmin')->group(function () {
 
         Route::resource('kategori', KategoriController::class);

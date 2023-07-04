@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('opsi_jasa_id');
             $table->string('label');
             $table->string('value');
+            $table->integer('modal')->default(0);
             $table->integer('harga')->default(0);
-            $table->string('foto');
             $table->timestamps();
             $table->foreign('opsi_jasa_id')->references('id')->on('jasa_opsi');
         });

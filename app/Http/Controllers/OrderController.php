@@ -7,6 +7,7 @@ use App\Models\JasaOpsiItem;
 use App\Models\Pemesanan;
 use App\Models\PemesananItem;
 use App\Models\RekeningBank;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -34,7 +35,9 @@ class OrderController extends Controller
         $jasa = Jasa::where('id', $request->jasa)->first();
 
         if ($jasa) {
-            $noPemesanan = uniqid();
+
+            $code = 'PESANAN-' . mt_rand(0000, 9999);
+            $noPemesanan = $code;
             $pemesanan = new Pemesanan();
             $pemesanan->user_id = auth()->user()->id;
             $pemesanan->no_pemesanan = $noPemesanan;
@@ -72,7 +75,55 @@ class OrderController extends Controller
 
     public function terpesan(Request $request)
     {
-        $terpesan = Pemesanan::where('user_id', auth()->user()->id)->get();
+        $terpesan = Pemesanan::latest()->where('user_id', auth()->user()->id)->get();
         return view('home.terpesan', compact('terpesan'));
+    }
+
+    public function edit(Request $request, Pemesanan $pemesanan)
+    {
+        return view('home.edit-pesanan', compact('pemesanan'));
+    }
+
+    public function update(Request $request, Pemesanan $pemesanan)
+    {
+        $tanggal = $pemesanan->tanggal_acara;
+
+        $isTanggalExist = false;
+
+        foreach ($pemesanan->pemesananItem as $pemesananItem) {
+            $jasaId = $pemesananItem->jasa->id;
+            $isExist = PemesananItem::whereHas('pemesanan', function ($query) use ($tanggal) {
+                $query->where('tanggal_acara', $tanggal)
+                    ->where('status_pembayaran', true);
+            })
+                ->where('jasa_id', $jasaId)
+                ->exists();
+
+            if ($isExist) {
+                $isTanggalExist = true;
+                break;
+            }
+        }
+
+        if ($isTanggalExist) {
+
+            return back()->with('error', 'Tanggal sudah dipesan untuk jasa ini');
+        } else {
+
+            $request->file('bukti_pembayaran')->store('public/bukti_pembayaran');
+            $pemesanan->bukti_pembayaran = $request->file('bukti_pembayaran')->hashName();
+            $pemesanan->status_pembayaran = true;
+            $pemesanan->save();
+            return redirect()->route('terpesan');
+        }
+    }
+
+    public function pdf(Pemesanan $pemesanan)
+    {
+        $pdf = new Dompdf();
+        $pdf->loadHtml(view('home.pdf', ['data' => $pemesanan]));
+        $pdf->setpaper('A4' . 'portrait');
+        $pdf->render();
+        $pdf->stream();
     }
 }

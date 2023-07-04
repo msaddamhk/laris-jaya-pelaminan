@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('kategori_id');
             $table->string('nama');
             $table->text('deskripsi');
+            $table->integer('modal')->default(0);
             $table->integer('harga')->default(0);
             $table->string('tipe_unit');
             $table->integer('jumlah_minimal');
