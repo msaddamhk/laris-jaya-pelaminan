@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\JasaController;
 use App\Http\Controllers\admin\JasaOpsiController;
 use App\Http\Controllers\admin\JasaOpsiItemController;
@@ -43,7 +44,7 @@ Route::get('/detail-jasa/{jasa}', [DetailJasaController::class, 'index'])->name(
 
 Route::get('/beli-sekarang', [OrderController::class, 'index'])->name('order.index')->middleware(['auth', 'verified']);
 
-Route::post('/beli-sekarang/store', [OrderController::class, 'store'])->name('order.store');
+Route::post('/beli-sekarang/store-pesanan', [OrderController::class, 'store'])->name('order.store');
 
 
 Route::middleware('auth')->group(function () {
@@ -52,7 +53,7 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/update-profil/{user}/store', [UpdateUserController::class, 'update'])->name('home.update.profile.update');
 
-    Route::get('/pesanan', [OrderController::class, 'terpesan'])->name('terpesan');
+    Route::get('/pesanann', [OrderController::class, 'terpesan'])->name('terpesan');
 
     Route::get('/pesanan/{pemesanan}/edit', [OrderController::class, 'edit'])->name('edit.pesanan');
 
@@ -71,6 +72,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('rekening', RekeningBankController::class);
 
         Route::resource('data-admin', KelolaAdminController::class);
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard.index');
 
         Route::get('/jasa/{jasa}/opsi', [JasaOpsiController::class, 'index'])
             ->name('opsi.index');

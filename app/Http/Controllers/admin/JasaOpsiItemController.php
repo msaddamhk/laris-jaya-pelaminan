@@ -26,15 +26,17 @@ class JasaOpsiItemController extends Controller
         $request->validate([
             'value' => 'required',
             'label' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|integer',
+            'modal' => 'required|integer',
+
         ]);
 
         JasaOpsiItem::create([
             "opsi_jasa_id" => $jasaopsi->id,
             "label" => $request->label,
             "value" => $request->value,
+            "modal" => $request->modal,
             "harga" => $request->harga,
-            "foto" => "1",
         ]);
 
         return redirect()->route('opsi.item.index', [$jasa, $jasaopsi])->with('success', 'Data Berhasi di Tambah');
@@ -51,11 +53,13 @@ class JasaOpsiItemController extends Controller
         $request->validate([
             'value' => 'required',
             'label' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|integer',
+            'modal' => 'required|integer',
         ]);
 
         $jasaopsiitem->label = $request->label;
         $jasaopsiitem->value = $request->value;
+        $jasaopsiitem->modal = $request->modal;
         $jasaopsiitem->harga = $request->harga;
         $jasaopsiitem->save();
 

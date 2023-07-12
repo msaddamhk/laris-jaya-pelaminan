@@ -37,7 +37,9 @@
         <div class="pt-2 d-flex flex-column gap-5">
             <div class="menu p-0">
                 <p class="text-white fw-bold mt-4">Admin</p>
-                <a href="" class="item-menu">
+
+                <a href="{{ route('dashboard.index') }}"
+                    class="item-menu {{ Request::is('dashboard*') ? 'active' : '' }}">
                     <i class="fa-solid fa-gauge me-2"></i>
                     Dashboard
                 </a>

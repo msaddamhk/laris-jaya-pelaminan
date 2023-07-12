@@ -15,6 +15,7 @@ class JasaOpsiItem extends Model
         'opsi_jasa_id',
         'label',
         'value',
+        'modal',
         'harga',
         'foto',
     ];

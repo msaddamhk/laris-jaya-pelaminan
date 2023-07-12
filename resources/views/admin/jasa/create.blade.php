@@ -21,6 +21,15 @@
             </div>
 
             <div class="form-group mb-3">
+                <label for="modal">Modal</label>
+                <input type="number" class="form-control @error('modal') is-invalid @enderror" id="modal"
+                    name="modal" value="{{ old('modal') }}">
+                @error('modal')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
                 <label for="harga">Harga</label>
                 <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga"
                     name="harga" value="{{ old('harga') }}">

@@ -37,4 +37,50 @@ class Pemesanan extends Model
             })) * $item->jumlah);
         });
     }
+
+
+    public function hitungKeuntungan()
+    {
+        $totalKeuntungan = 0;
+
+        foreach ($this->pemesananItem as $pesananItem) {
+            $jasa = $pesananItem->jasa;
+            $keuntunganJasa = ($jasa->harga - $jasa->modal);
+
+            $totalPesananItemOpsi = 0;
+
+            foreach ($pesananItem->pemesananItemOpsi as $pesananItemOpsi) {
+                $jasaOpsiItem = $pesananItemOpsi->jasaOpsiItem;
+                $totalPesananItemOpsi += $jasaOpsiItem->harga - $jasaOpsiItem->modal;
+            }
+
+            $keuntunganJasaOpsi = $totalPesananItemOpsi;
+            $totalKeuntungan += ($keuntunganJasa + $keuntunganJasaOpsi) * $pesananItem->jumlah;
+        }
+
+        return $totalKeuntungan;
+    }
+
+    public function hitungPemasukan()
+    {
+        $totalPemasukan = 0;
+
+        foreach ($this->pemesananItem as $pesananItem) {
+            $jasa = $pesananItem->jasa;
+            $pemasukanJasa = $jasa->harga;
+
+            $totalPesananItemOpsi = 0;
+
+            foreach ($pesananItem->pemesananItemOpsi as $pesananItemOpsi) {
+                $jasaOpsiItem = $pesananItemOpsi->jasaOpsiItem;
+                $totalPesananItemOpsi += $jasaOpsiItem->harga;
+            }
+
+            $pemasukanJasaOpsi = $totalPesananItemOpsi;
+
+            $totalPemasukan += ($pemasukanJasa + $pemasukanJasaOpsi) * $pesananItem->jumlah;
+        }
+
+        return $totalPemasukan;
+    }
 }

@@ -41,6 +41,7 @@ class JasaController extends Controller
             'kategori_id' => 'required|exists:kategori,id',
             'nama' => 'required|string|max:255|unique:jasa',
             'deskripsi' => 'required',
+            'modal' => 'required|integer',
             'harga' => 'required|integer',
             'tipe_unit' => 'required|string|max:255',
             'jumlah_minimal' => 'required|integer',
@@ -88,6 +89,7 @@ class JasaController extends Controller
             'kategori_id' => 'required|exists:kategori,id',
             'nama' => 'required|string|max:255|unique:jasa,nama,' . $jasa->id,
             'deskripsi' => 'required',
+            'modal' => 'required|integer',
             'harga' => 'required|integer',
             'tipe_unit' => 'required|string|max:255',
             'jumlah_minimal' => 'required|integer',
@@ -120,7 +122,6 @@ class JasaController extends Controller
             Storage::delete('public/' . $foto->foto);
             $foto->delete();
         }
-
         $jasa->delete();
         return redirect()->route('jasa.index')->with('success', 'Jasa deleted successfully.');
     }

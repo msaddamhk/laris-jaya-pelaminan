@@ -17,6 +17,7 @@ class Jasa extends Model
         'nama',
         'deskripsi',
         'harga',
+        'modal',
         'tipe_unit',
         'jumlah_minimal',
         'jumlah_maksimal',

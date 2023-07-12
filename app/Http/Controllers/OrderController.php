@@ -61,10 +61,13 @@ class OrderController extends Controller
             ]);
 
             foreach ($jasa->jasaOpsi as $opsi) {
-                $item = JasaOpsiItem::findOrFail(request(str()->slug($opsi->nama)));
-                $pemesananItem->pemesananItemOpsi()->create([
-                    'jasa_opsi_item_id' => $item->id
-                ]);
+                $namaSlug = str()->slug($opsi->nama);
+                $item = JasaOpsiItem::find(request($namaSlug));
+                if ($item) {
+                    $pemesananItem->pemesananItemOpsi()->create([
+                        'jasa_opsi_item_id' => $item->id
+                    ]);
+                }
             }
 
             return redirect()->route('terpesan');

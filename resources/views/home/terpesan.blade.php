@@ -44,19 +44,14 @@
                                     </td>
                                     <td>Rp {{ number_format($item->jumlah()) }}</td>
                                     <td>
-                                        @php
-                                            $tanggalAcara = \Carbon\Carbon::parse($item->tanggal_acara);
-                                            $sekarang = \Carbon\Carbon::now();
-                                        @endphp
-                                        @if ($item->bukti_pembayaran == 'null' && $tanggalAcara->diffInDays($sekarang) > 1)
+                                        @if ($item->created_at->addHour(1)->isPast())
+                                            <p>Expired</p>
+                                        @elseif ($item->bukti_pembayaran == 'null')
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('edit.pesanan', $item->id) }}">Upload
-                                                Bukti Pembayaran
-                                            </a>
+                                                href="{{ route('edit.pesanan', $item->id) }}">Upload Bukti Pembayaran</a>
                                         @else
                                             <a class="btn btn-success btn-sm"
-                                                href="{{ route('invoice', $item->id) }}">Download
-                                                Invoice</a>
+                                                href="{{ route('invoice', $item->id) }}">Download Invoice</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -65,7 +60,6 @@
                     </div>
                 </div>
             @endforeach
-
         </div>
     </section>
 @endsection

@@ -25,8 +25,17 @@
         </div>
 
         <div class="form-group mb-3">
+            <label for="modal" class="mb-2">Modal</label>
+            <input type="number" class="form-control" id="modal" name="modal" value="{{ $jasaopsiitem->modal }}"
+                required>
+            @error('modal')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group mb-3">
             <label for="harga" class="mb-2">Harga</label>
-            <input type="text" class="form-control" id="harga" name="harga" value="{{ $jasaopsiitem->harga }}"
+            <input type="number" class="form-control" id="harga" name="harga" value="{{ $jasaopsiitem->harga }}"
                 required>
             @error('harga')
                 <div class="invalid-feedback">{{ $message }}</div>
