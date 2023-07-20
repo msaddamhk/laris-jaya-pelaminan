@@ -64,7 +64,7 @@
                         <a class="nav-link navlinkcolor" href="#keunggulan">Keunggulan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="#produk">Produk</a>
+                        <a class="nav-link navlinkcolor" href="#produk">Jasa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link navlinkcolor" href="#faq">Faq</a>

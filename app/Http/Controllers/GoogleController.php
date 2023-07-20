@@ -23,7 +23,7 @@ class GoogleController extends Controller
 
             if ($existingUser) {
                 Auth::login($existingUser);
-                return redirect('/');
+                return redirect()->intended('/');
             } else {
                 $newUser = new User();
                 $newUser->name = $user->name;
@@ -33,7 +33,7 @@ class GoogleController extends Controller
                 $newUser->save();
 
                 Auth::login($newUser);
-                return redirect('/');
+                return redirect()->intended('/');
             }
         } catch (\Exception $e) {
             return redirect('/login')->with('error', 'Terjadi kesalahan saat melakukan autentikasi Google. Silakan coba lagi.');

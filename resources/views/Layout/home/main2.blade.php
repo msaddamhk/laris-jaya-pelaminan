@@ -69,7 +69,7 @@
                         <a class="nav-link navlinkcolor" href="{{ route('home') }}#keunggulan">Keunggulan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="{{ route('home') }}#produk">Produk</a>
+                        <a class="nav-link navlinkcolor" href="{{ route('home.jasa') }}">Jasa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link navlinkcolor" href="{{ route('home') }}#faq">Faq</a>

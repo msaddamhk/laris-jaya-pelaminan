@@ -3,9 +3,24 @@
 @section('content')
     <section id="about" class="py-5">
         <div class="container py-3">
+
             @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
+                </div>
+            @endif
+
+            @if (auth()->user()->phone_number == '')
+                <div class="alert alert-danger">
+                    Silahkan lengkapi
+                    @if (empty(auth()->user()->phone_number))
+                        nomor telepon
+                    @endif
+                    @if (empty(auth()->user()->alamat))
+                        dan
+                        alamat
+                    @endif
+                    <a href="{{ route('home.update.profile', auth()->user()->id) }}">disini</a>
                 </div>
             @endif
 
@@ -102,8 +117,8 @@
                                 nanti</small>
                             <h6 class="fw-bold">Total : Rp {{ number_format($totalHarga) }}</h6>
 
-
-                            <button type="submit" class="btn btn-success btn-sm" style="font-size: 12px">
+                            <button type="submit" class="btn btn-success btn-sm" style="font-size: 12px"
+                                @if (empty(auth()->user()->phone_number)) disabled @endif>
                                 <i class="bi bi-wallet"></i> Bayar Sekarang
                             </button>
                         </div>
