@@ -15,6 +15,8 @@ class PemesananItem extends Model
         'jasa_id',
         'pemesanan_id',
         'jumlah',
+        'status_pengembalian_barang',
+
     ];
 
     public function pemesanan()

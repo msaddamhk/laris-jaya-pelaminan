@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('modal')->default(0);
             $table->integer('harga')->default(0);
             $table->string('tipe_unit');
+            $table->boolean('is_cod')->default(false);
+            $table->boolean('banyak_hari')->default(false);
             $table->integer('jumlah_minimal');
             $table->integer('jumlah_maksimal');
             $table->foreign('vendor_id')->references('id')->on('vendor');

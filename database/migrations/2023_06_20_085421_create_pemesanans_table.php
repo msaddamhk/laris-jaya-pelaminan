@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('no_pemesanan');
-            $table->date('tanggal_acara');
+            $table->enum('metode_pembayaran', ['online', 'cod']);
             $table->boolean('status_pembayaran')->default(false);
             $table->string('bukti_pembayaran');
             $table->timestamps();

@@ -58,10 +58,29 @@
 
                         <label for="datepicker" class="mb-2">Pilih Tanggal Acara</label>
 
-                        <div class="input-group mb-3">
-                            <input type="text" name="tanggal_reservasi" class="form-control" id="datepicker"
-                                placeholder="Silahkan pilih tanggal yang tersedia" required>
-                        </div>
+                        @if ($jasa->banyak_hari == true)
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="tanggal_reservasi" class="form-control" id="datepicker"
+                                            placeholder="Tanggal Mulai" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="tanggal_akhir" class="form-control" id="datepicker"
+                                            placeholder="Tanggal Akhir" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @else()
+                            <div class="input-group mb-3">
+                                <input type="text" name="tanggal_reservasi" class="form-control" id="datepicker"
+                                    placeholder="Silahkan pilih tanggal yang tersedia" required>
+                            </div>
+                        @endif
 
                         <input type="text" name="jasa" class="form-control" value="{{ $jasa->id }}"
                             id="datepicker" placeholder="Select a date" hidden>
@@ -104,7 +123,6 @@
                             Beli Sekarang ->
                         </button>
                     </form>
-
                 </div>
             </div>
         </div>

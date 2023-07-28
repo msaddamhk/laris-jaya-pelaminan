@@ -29,13 +29,23 @@ class Pemesanan extends Model
         return $this->hasMany(PemesananItem::class);
     }
 
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function jumlahhari()
+    {
+        return $this->booking()->count();
+    }
+
     public function jumlah()
     {
         return $this->pemesananItem->reduce(function ($total, $item) {
             return $total += (($item->jasa->harga + $item->pemesananItemOpsi->reduce(function ($total, $item) {
                 return $total += $item->jasaOpsiItem->harga;
             })) * $item->jumlah);
-        });
+        }) * $this->jumlahhari();
     }
 
 
@@ -58,7 +68,7 @@ class Pemesanan extends Model
             $totalKeuntungan += ($keuntunganJasa + $keuntunganJasaOpsi) * $pesananItem->jumlah;
         }
 
-        return $totalKeuntungan;
+        return $totalKeuntungan * $this->jumlahhari();
     }
 
     public function hitungPemasukan()
@@ -81,6 +91,6 @@ class Pemesanan extends Model
             $totalPemasukan += ($pemasukanJasa + $pemasukanJasaOpsi) * $pesananItem->jumlah;
         }
 
-        return $totalPemasukan;
+        return $totalPemasukan * $this->jumlahhari();
     }
 }

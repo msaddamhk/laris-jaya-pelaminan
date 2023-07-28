@@ -67,6 +67,28 @@
             </div>
 
             <div class="form-group mb-3">
+                <label for="is_cod">Izin COD</label>
+                <select class="form-select @error('is_cod') is-invalid @enderror" id="is_cod" name="is_cod">
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
+                </select>
+                @error('is_cod')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="banyak_hari">Bisa Bberapa Hari</label>
+                <select class="form-select @error('banyak_hari') is-invalid @enderror" id="banyak_hari" name="banyak_hari">
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
+                </select>
+                @error('banyak_hari')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
                 <label for="deskripsi">Deskripsi</label>
                 <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi">{{ old('deskripsi') }}</textarea>
                 @error('deskripsi')

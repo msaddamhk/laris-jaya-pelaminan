@@ -48,6 +48,8 @@ class JasaController extends Controller
             'jumlah_maksimal' => 'required|integer',
             'foto' => 'required|array',
             'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'is_cod' => 'required|boolean',
+            'banyak_hari' => 'required|boolean',
         ]);
 
         $jasa = Jasa::create($request->except('foto'));
@@ -96,6 +98,8 @@ class JasaController extends Controller
             'jumlah_maksimal' => 'required|integer',
             'foto' => 'nullable|array',
             'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'is_cod' => 'required|boolean',
+            'banyak_hari' => 'required|boolean',
         ]);
 
         $jasa->update($request->except('foto'));

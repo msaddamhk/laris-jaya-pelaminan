@@ -18,9 +18,12 @@ class Jasa extends Model
         'deskripsi',
         'harga',
         'modal',
+        'is_cod',
+        'banyak_hari',
         'tipe_unit',
         'jumlah_minimal',
         'jumlah_maksimal',
+        'status_pengembalian',
     ];
 
     public function vendor()
@@ -46,6 +49,11 @@ class Jasa extends Model
     public function pemesananItems()
     {
         return $this->hasMany(PemesananItem::class);
+    }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
     }
 
     public function pemesanan()

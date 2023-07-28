@@ -33,14 +33,23 @@
                             </div>
 
                             <div class="col-md-6 mb-3 mb-lg-3">
+
                                 <label for="exampleFormControlInput1" class="form-label">Cari</label>
-                                <input type="text" class="form-control" name="keyword" value="{{ $selectedKeyword }}"
-                                    placeholder="Masukkan nama jasa">
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control border-0" name="keyword"
+                                                value="{{ $selectedKeyword }}" placeholder="Masukkan nama jasa">
+                                        </div>
+                                        <div class="col-md-2 my-auto">
+                                            <button type="submit" class="btn btn-primary btn-sm" style="font-size: 10px">
+                                                Cari Data
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-sm">Cari Data</button>
-                            </div>
                         </div>
                     </div>
                 </form>
@@ -67,4 +76,10 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById('kategori').addEventListener('change', function() {
+            this.form.submit();
+        });
+    </script>
 @endsection

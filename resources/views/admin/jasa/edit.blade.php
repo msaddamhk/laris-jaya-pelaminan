@@ -52,6 +52,28 @@
             </div>
 
             <div class="form-group mb-3">
+                <label for="is_cod">Izin COD</label>
+                <select class="form-select @error('is_cod') is-invalid @enderror" id="is_cod" name="is_cod">
+                    <option value="1" @if ($jasa->is_cod) selected @endif>Ya</option>
+                    <option value="0" @if (!$jasa->is_cod) selected @endif>Tidak</option>
+                </select>
+                @error('is_cod')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="banyak_hari">Bisa Bberapa Hari</label>
+                <select class="form-select @error('banyak_hari') is-invalid @enderror" id="banyak_hari" name="banyak_hari">
+                    <option value="1" @if ($jasa->banyak_hari) selected @endif>Ya</option>
+                    <option value="0" @if (!$jasa->banyak_hari) selected @endif>Tidak</option>
+                </select>
+                @error('banyak_hari')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
                 <label for="deskripsi">Deskripsi</label>
                 <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi">{{ old('deskripsi', $jasa->deskripsi) }}</textarea>
                 @error('deskripsi')
@@ -88,8 +110,8 @@
 
             <div class="form-group mb-3">
                 <label for="jumlah_minimal">Jumlah Minimal</label>
-                <input type="number" class="form-control @error('jumlah_minimal') is-invalid @enderror" id="jumlah_minimal"
-                    name="jumlah_minimal" value="{{ old('jumlah_minimal', $jasa->jumlah_minimal) }}">
+                <input type="number" class="form-control @error('jumlah_minimal') is-invalid @enderror"
+                    id="jumlah_minimal" name="jumlah_minimal" value="{{ old('jumlah_minimal', $jasa->jumlah_minimal) }}">
                 @error('jumlah_minimal')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -107,8 +129,8 @@
 
             <div class="form-group mb-3">
                 <label for="foto">Foto</label>
-                <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto[]"
-                    multiple>
+                <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto"
+                    name="foto[]" multiple>
                 @error('foto')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
