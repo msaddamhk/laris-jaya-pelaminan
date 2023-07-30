@@ -84,7 +84,6 @@
         {{ $pemesanan->links() }}
     </div> --}}
 
-
     <div class="mt-4">
         @foreach ($pemesanan as $item)
             @php
@@ -114,12 +113,13 @@
                         </h6>
                         <h6>Metode Pembayaran : {{ $item->metode_pembayaran }}</h6>
                         <h6>Status Pembayaran :
-                            @if ($item->status_pembayaran == 1)
-                                SUDAH BAYAR
-                            @else
+                            @if ($item->status_pembayaran == '0')
                                 BELUM BAYAR
+                            @else
+                                SUDAH BAYAR
                             @endif
                         </h6>
+                        <h6>Catatan Pembayaran : {{ $item->catatan_pembayaran }}</h6>
                         <h6>Total : Rp {{ number_format($item->jumlah()) }}</h6>
                     </div>
 
@@ -129,6 +129,7 @@
                         <h6>Alamat : {{ $item->user->alamat }}</h6>
                         <h6>Tanggal Pemesanan : {{ $item->created_at }}</h6>
                     </div>
+
                 </div>
                 <hr>
                 <div class="table-responsive">
@@ -139,6 +140,7 @@
                                 <th scope="col">Opsi</th>
                                 <th scope="col">Jumlah</th>
                                 <th scope="col">Status Pengembalian</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -148,7 +150,6 @@
                                         {{ $pemesananItem->jasa->nama }}
                                     </td>
                                     <td>
-
                                         @foreach ($pemesananItem->pemesananItemOpsi as $pemesananItemOpsi)
                                             - {{ $pemesananItemOpsi->jasaOpsiItem->label }}
                                         @endforeach
@@ -166,6 +167,15 @@
                                             -
                                         @endif
                                     </td>
+
+                                    <td>
+                                        @if ($pemesananItem->jasa->status_pengembalian == true)
+                                            <a href="{{ route('pemesanan_item.edit', $pemesananItem->id) }}"
+                                                class="btn btn-success btn-sm">Update Pengembalian</a>
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -173,14 +183,15 @@
                 </div>
 
                 <div class="">
-                    @if ($item->bukti_pembayaran == 'null')
-                        -
-                    @else
+                    @if ($item->bukti_pembayaran !== 'null')
                         <a class="btn btn-primary btn-sm"
                             href="{{ asset('/storage/bukti_pembayaran/' . $item->bukti_pembayaran) }}" download>
                             Unduh Bukti Pembayaran
                         </a>
                     @endif
+
+                    <a href="{{ route('pemesanan.edit', $item->id) }}" class="btn btn-warning btn-sm"
+                        @if ($item->status_pembayaran == '0') disabled @endif>Update Pembayaran</a>
                 </div>
             </div>
         @endforeach

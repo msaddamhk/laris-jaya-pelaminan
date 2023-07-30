@@ -50,6 +50,7 @@ class JasaController extends Controller
             'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_cod' => 'required|boolean',
             'banyak_hari' => 'required|boolean',
+            'status_pengembalian' => 'required|boolean',
         ]);
 
         $jasa = Jasa::create($request->except('foto'));
@@ -100,6 +101,7 @@ class JasaController extends Controller
             'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_cod' => 'required|boolean',
             'banyak_hari' => 'required|boolean',
+            'status_pengembalian' => 'required|boolean',
         ]);
 
         $jasa->update($request->except('foto'));

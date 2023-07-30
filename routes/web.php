@@ -1,18 +1,22 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\GaleriController;
 use App\Http\Controllers\admin\JasaController;
 use App\Http\Controllers\admin\JasaOpsiController;
 use App\Http\Controllers\admin\JasaOpsiItemController;
 use App\Http\Controllers\admin\KategoriController;
+use App\Http\Controllers\admin\KategoriGaleriController;
 use App\Http\Controllers\admin\KelolaAdminController;
 use App\Http\Controllers\admin\KelolaPesananController;
 use App\Http\Controllers\admin\RekeningBankController;
+use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\VendorController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\user\BerandaController;
 use App\Http\Controllers\user\DetailJasaController;
+use App\Http\Controllers\user\GaleriController as UserGaleriController;
 use App\Http\Controllers\user\JasaController as UserJasaController;
 use App\Http\Controllers\user\UpdateUserController;
 use Illuminate\Support\Facades\Auth;
@@ -40,12 +44,13 @@ Route::get('/', [BerandaController::class, 'index'])->name('home');
 
 Route::get('/seluruh-jasa', [UserJasaController::class, 'index'])->name('home.jasa');
 
+Route::get('/galeri', [UserGaleriController::class, 'index'])->name('home.galeri');
+
 Route::get('/detail-jasa/{jasa}', [DetailJasaController::class, 'index'])->name('detail');
 
 Route::get('/beli-sekarang', [OrderController::class, 'index'])->name('order.index')->middleware(['auth', 'verified']);
 
 Route::post('/beli-sekarang/store-pesanan', [OrderController::class, 'store'])->name('order.store');
-
 
 Route::middleware('auth')->group(function () {
 
@@ -64,6 +69,12 @@ Route::middleware('auth')->group(function () {
     Route::middleware('can:isAdmin')->group(function () {
 
         Route::resource('kategori', KategoriController::class);
+
+        Route::resource('kategori-galeri', KategoriGaleriController::class);
+
+        Route::resource('kelola-galeri', GaleriController::class);
+
+        Route::resource('slider', SliderController::class);
 
         Route::resource('vendor', VendorController::class);
 
@@ -114,5 +125,17 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/kelola-pemesanan', [KelolaPesananController::class, 'index'])
             ->name('pemesanan.index');
+
+        Route::get('/kelola-pemesanan/{pemesanan}/edit', [KelolaPesananController::class, 'edit'])
+            ->name('pemesanan.edit');
+
+        Route::put('/kelola-pemesanan/{pemesanan}/edit/update', [KelolaPesananController::class, 'update'])
+            ->name('pemesanan.update');
+
+        Route::get('/edit_pemesanan_item/{pemesanan_item}', [KelolaPesananController::class, 'pemesanan_item_edit'])
+            ->name('pemesanan_item.edit');
+
+        Route::put('/edit_pemesanan_item/{pemesanan_item}/update', [KelolaPesananController::class, 'pemesanan_item_update'])
+            ->name('pemesanan_item.update');
     });
 });

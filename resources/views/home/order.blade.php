@@ -52,8 +52,21 @@
                                         </td>
 
                                         <td>
-                                            {{ request()->get('tanggal_reservasi') }} -
-                                            {{ request()->get('tanggal_akhir') }}
+                                            <?php
+                                            $tanggal_reservasi = request()->get('tanggal_reservasi');
+                                            $tanggal_akhir = request()->get('tanggal_akhir');
+                                            $tanggal_reservasi_obj = new DateTime($tanggal_reservasi);
+                                            
+                                            if ($tanggal_akhir) {
+                                                $tanggal_akhir_obj = new DateTime($tanggal_akhir);
+                                                $selisih = $tanggal_reservasi_obj->diff($tanggal_akhir_obj);
+                                                $jumlah_hari = $selisih->days + 1;
+                                            } else {
+                                                $jumlah_hari = 1;
+                                            }
+                                            ?>
+
+                                            {{ $tanggal_reservasi }} - {{ $tanggal_akhir }} ({{ $jumlah_hari }}) Hari
                                         </td>
 
                                         <td> Rp {{ number_format($jasa->harga) }}</td>
@@ -99,7 +112,7 @@
 
                         @php
                             $totalHarga += $jasa->harga;
-                            $totalHarga = $totalHarga * $jumlah;
+                            $totalHarga = $totalHarga * $jumlah * $jumlah_hari;
                         @endphp
 
                         <input type="number" class="form-control" name="jasa" value="{{ $jasa->id }}"
@@ -134,14 +147,16 @@
                                     </label>
                                 </div>
 
-                                <div class="form-check col-md-6">
-                                    <input onclick="document.getElementById('x').style.display = 'none'"
-                                        class="form-check-input" type="radio" name="metode_pembayaran" id="pembayaran"
-                                        value="cod" required>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Bayar Secara langsung
-                                    </label>
-                                </div>
+                                @if ($jasa->is_cod == true)
+                                    <div class="form-check col-md-6">
+                                        <input onclick="document.getElementById('x').style.display = 'none'"
+                                            class="form-check-input" type="radio" name="metode_pembayaran" id="pembayaran"
+                                            value="cod" required>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Bayar Secara langsung
+                                        </label>
+                                    </div>
+                                @endif
                             </div>
 
                             <hr>

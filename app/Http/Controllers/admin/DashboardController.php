@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pemesanan;
+use DateTime;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -53,13 +54,14 @@ class DashboardController extends Controller
         $pemasukanPerBulan = [];
         $labels = [];
 
+        $tahun = 2023;
         for ($i = 1; $i <= 12; $i++) {
-            $bulanIni = now()->month($i)->startOfMonth();
+            $bulanIni = DateTime::createFromFormat('Y-m-d', $tahun . '-' . $i . '-01');
             $bulanLabel = $bulanIni->format('M');
 
             $pesananBulanIni = Pemesanan::where('status_pembayaran', '1')
-                ->whereMonth('created_at', $bulanIni->month)
-                ->whereYear('created_at', $bulanIni->year)
+                ->whereMonth('created_at', $bulanIni->format('m'))
+                ->whereYear('created_at', $bulanIni->format('Y'))
                 ->get();
 
             $totalKeuntunganBulanIni = 0;

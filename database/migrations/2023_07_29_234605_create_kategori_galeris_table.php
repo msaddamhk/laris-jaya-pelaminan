@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pemesanan', function (Blueprint $table) {
-            $table->boolean('status_pengembalian_barang')->default(false);
+        Schema::create('kategori_galeri', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pemesanan', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('kategori_galeri');
     }
 };

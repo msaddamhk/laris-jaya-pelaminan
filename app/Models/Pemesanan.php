@@ -17,6 +17,7 @@ class Pemesanan extends Model
         'tanggal_acara',
         'status_pembayaran',
         'bukti_pembayaran',
+        'catatan_pembayaran',
     ];
 
     public function user()

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('modal')->default(0);
             $table->integer('harga')->default(0);
             $table->timestamps();
-            $table->foreign('opsi_jasa_id')->references('id')->on('jasa_opsi');
+            $table->foreign('opsi_jasa_id')->references('id')->on('jasa_opsi')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

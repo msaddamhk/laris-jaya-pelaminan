@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('pemesanan_item_id');
             $table->unsignedBigInteger('jasa_opsi_item_id');
             $table->timestamps();
-            $table->foreign('pemesanan_item_id')->references('id')->on('pemesanan_item');
-            $table->foreign('jasa_opsi_item_id')->references('id')->on('jasa_opsi_item');
+            $table->foreign('pemesanan_item_id')->references('id')->on('pemesanan_item')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('jasa_opsi_item_id')->references('id')->on('jasa_opsi_item')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

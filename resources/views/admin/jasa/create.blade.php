@@ -78,12 +78,24 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="banyak_hari">Bisa Bberapa Hari</label>
+                <label for="banyak_hari">Apakah Bisa Berapa Hari ?</label>
                 <select class="form-select @error('banyak_hari') is-invalid @enderror" id="banyak_hari" name="banyak_hari">
                     <option value="1">Ya</option>
                     <option value="0">Tidak</option>
                 </select>
                 @error('banyak_hari')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="status_pengembalian">Apakah Bisa di kembalikan ?</label>
+                <select class="form-select @error('status_pengembalian') is-invalid @enderror" id="status_pengembalian"
+                    name="status_pengembalian">
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
+                </select>
+                @error('status_pengembalian')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -107,8 +119,8 @@
 
             <div class="form-group mb-3">
                 <label for="jumlah_minimal">Jumlah Minimal</label>
-                <input type="number" class="form-control @error('jumlah_minimal') is-invalid @enderror" id="jumlah_minimal"
-                    name="jumlah_minimal" value="{{ old('jumlah_minimal') }}">
+                <input type="number" class="form-control @error('jumlah_minimal') is-invalid @enderror"
+                    id="jumlah_minimal" name="jumlah_minimal" value="{{ old('jumlah_minimal') }}">
                 @error('jumlah_minimal')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

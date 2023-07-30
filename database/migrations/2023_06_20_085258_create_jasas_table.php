@@ -24,8 +24,8 @@ return new class extends Migration
             $table->boolean('banyak_hari')->default(false);
             $table->integer('jumlah_minimal');
             $table->integer('jumlah_maksimal');
-            $table->foreign('vendor_id')->references('id')->on('vendor');
-            $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->foreign('vendor_id')->references('id')->on('vendor')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('kategori_id')->references('id')->on('kategori')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

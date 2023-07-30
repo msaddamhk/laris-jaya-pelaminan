@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('tipe');
             $table->timestamps();
-            $table->foreign('jasa_id')->references('id')->on('jasa');
+            $table->foreign('jasa_id')->references('id')->on('jasa')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
