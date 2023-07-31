@@ -56,7 +56,7 @@
                             dolorem, nam eveniet, ducimus eius tenetur aperiam sit
                             cupiditate explicabo commodi velit.
                         </p>
-                        <a href="" class="text-decoration-none" style="color: #a1947c">Baca Lebih Lanjut-></a>
+                        {{-- <a href="" class="text-decoration-none" style="color: #a1947c">Baca Lebih Lanjut-></a> --}}
                     </div>
                 </div>
             </div>
@@ -148,7 +148,7 @@
     </section>
 
 
-    <section class="py mt-4" id="produk">
+    <section class="py mt-4" id="galeri">
         <div class="container">
             <h1 class="text-black text-center text-uppercase" style="font-size: 40px; font-weight: 600"
                 data-aos="fade-in" data-aos-delay="100">
@@ -162,12 +162,17 @@
                 @foreach ($galeri as $item)
                     <div class="col-md-3 mb-4">
                         <a href="{{ asset('storage/galeri/' . $item->foto) }}" class="text-decoration-none text-black">
-                            <div>
-                                <img src="{{ asset('storage/galeri/' . $item->foto) }}" class="card-img-top"
-                                    height="260px" style="object-fit: cover; width: 100%" alt="..." />
-                                <div class="card-bod">
-                                    <h5 class="card-title fw-bold mb-1 mt-2"> {{ $item->judul }}</h5>
-                                    <p class="card-text" style="color: #a1947c">{{ $item->tanggal_booking }}</p>
+                            <div class="galeri"
+                                style="background-image: url('{{ asset('storage/galeri/' . $item->foto) }}')">
+                                <div class="garis mx-4 mt-3">
+                                    <h5>{{ $loop->iteration }}</h5>
+                                </div>
+                                <div class="text mx-4 mb-4">
+                                    <h5 class="m-0">{{ $item->tanggal_booking }}</h5>
+                                    <hr class="my-2" width="30%" />
+                                    <p class="" style="font-size: 10px">
+                                        {{ $item->judul }}
+                                    </p>
                                 </div>
                             </div>
                         </a>
@@ -241,7 +246,7 @@
                 <div class="col-md-6" data-aos="fade-in" data-aos-delay="400">
                     <details class="faq p-3">
                         <summary>
-                            Apakah Laris Jaya Pelaminan menyediakan layanan dekorasi
+                            Apakah Laris Jaya Pelaminan menyediakan layanan <br> dekorasi
                             pernikahan?
                         </summary>
                         <hr />

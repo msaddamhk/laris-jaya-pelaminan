@@ -15,24 +15,28 @@ class LoginController extends Controller
     public function authenticated()
     {
         if (auth()->user()->level == "ADMIN") {
-            return redirect()->route('kategori.index');
+            return redirect()->route('dashboard.index');
         }
         return redirect()->intended('/');
     }
 
     public function logout()
     {
-        Auth::logout();
-
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-
-        if (auth()->check() && auth()->user()->level == "ADMIN") {
-            return redirect()->route('kategori.index');
-        } else {
-            return redirect()->intended('/');
+        if (auth()->check()) {
+            if (auth()->user()->level == "ADMIN") {
+                Auth::logout();
+                request()->session()->invalidate();
+                request()->session()->regenerateToken();
+                return redirect()->route('login');
+            } else {
+                Auth::logout();
+                request()->session()->invalidate();
+                request()->session()->regenerateToken();
+                return redirect()->intended('/');
+            }
         }
     }
+
 
     // public function __construct()
     // {

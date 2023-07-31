@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('kategori-galeri.update', $kategori_galeri->id) }}" method="POST">
+    <form action="{{ route('galeri-kategori.update', $kategori_galeri->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group mb-3">

@@ -20,19 +20,34 @@
                     }
                 @endphp
                 <div class="card py-4 px-3 mb-4">
-                    <h6>No Pemesanan : {{ $item->no_pemesanan }}</h6>
-                    <h6>Tanggal Pemesanan : {{ $startDate }} Sampai {{ $endDate }} ({{ $item->jumlahhari() }}
-                        Hari)
-                    </h6>
-                    <h6>Metode Pembayaran : {{ $item->metode_pembayaran }}</h6>
-                    <h6>Status Pembayaran :
-                        @if ($item->status_pembayaran == 1)
-                            SUDAH BAYAR
-                        @else
-                            BELUM BAYAR
-                        @endif
-                    </h6>
-                    <h6>Total : Rp {{ number_format($item->jumlah()) }}</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>No Pemesanan : {{ $item->no_pemesanan }}</h6>
+                            <h6>Tanggal Pemesanan : {{ $startDate }} Sampai {{ $endDate }}
+                                ({{ $item->jumlahhari() }}
+                                Hari)
+                            </h6>
+                            <h6>Metode Pembayaran : {{ $item->metode_pembayaran }}</h6>
+                            <h6>Status Pembayaran :
+                                @if ($item->status_pembayaran == 1)
+                                    SUDAH BAYAR
+                                @else
+                                    BELUM BAYAR
+                                @endif
+                            </h6>
+                            <h6>Total : Rp {{ number_format($item->jumlah()) }}</h6>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">No Rekening</h6>
+                            @if ($item->metode_pembayaran == 'online')
+                                @foreach ($no_rekening as $rekening)
+                                    <h6>{{ $rekening->nama_bank }}</h6>
+                                    <h6>{{ $rekening->no_rekening }}</h6>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
                     <hr>
                     <div class="table-responsive">
                         <table class="table">
@@ -41,7 +56,7 @@
                                     <th scope="col">Nama Jasa</th>
                                     <th scope="col">Opsi</th>
                                     <th scope="col">Jumlah</th>
-                                    <th scope="col">Pesan</th>
+                                    <th scope="col">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>

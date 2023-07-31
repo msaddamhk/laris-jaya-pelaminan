@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jasa;
 use App\Models\Pemesanan;
+use App\Models\Vendor;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -77,6 +79,10 @@ class DashboardController extends Controller
             $labels[] = $bulanLabel;
         }
 
-        return view('admin.dashboard.index', compact('totalPemasukanPerBulan', 'totalKeuntunganPerBulan', 'totalPemasukanKeseluruhan', 'totalKeuntunganKeseluruhan', 'keuntunganPerBulan', 'labels', 'pemasukanPerBulan'));
+        $hitung_jasa = Jasa::count();
+        $hitung_vendor = Vendor::count();
+
+
+        return view('admin.dashboard.index', compact('totalPemasukanPerBulan', 'totalKeuntunganPerBulan', 'totalPemasukanKeseluruhan', 'totalKeuntunganKeseluruhan', 'keuntunganPerBulan', 'labels', 'pemasukanPerBulan', 'hitung_jasa', 'hitung_vendor'));
     }
 }

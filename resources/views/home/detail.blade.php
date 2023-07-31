@@ -69,7 +69,7 @@
 
                                 <div class="col-md-6">
                                     <div class="input-group mb-3">
-                                        <input type="text" name="tanggal_akhir" class="form-control" id="datepicker"
+                                        <input type="text" name="tanggal_akhir" class="form-control" id="datepicker2"
                                             placeholder="Tanggal Akhir" required>
                                     </div>
                                 </div>
@@ -116,6 +116,15 @@
                             <p for="jumlah" class="text-secondary" style="font-size: 13px">Maksimum
                                 Pesanan <b class="text-danger fs-6">{{ $jasa->jumlah_maksimal }}</b> dan minimun
                                 pesanan <b class="text-danger fs-6">{{ $jasa->jumlah_minimal }}</b></p>
+                        @else
+                            <div class="input-group">
+                                <input type="hidden" name="jumlah" class="form-control" id="jumlah" value="1"
+                                    placeholder="jumlah" max="{{ $jasa->jumlah_maksimal }}"
+                                    min="{{ $jasa->jumlah_minimal }}" oninput="validity.valid||(value='');" required>
+                            </div>
+                            <p for="jumlah" class="text-secondary" style="font-size: 13px">Maksimum
+                                Pesanan <b class="text-danger fs-6">{{ $jasa->jumlah_maksimal }}</b> dan minimun
+                                pesanan <b class="text-danger fs-6">{{ $jasa->jumlah_minimal }}</b></p>
                         @endif
 
                         <button type="submit" class="btn btn-outline-dark btn-sm me-2" data-bs-toggle="modal"
@@ -142,8 +151,29 @@
             });
         });
 
+        var bookedDates = {!! json_encode($tanggalpesanan) !!};
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datepicker2", {
+                disable: bookedDates,
+                dateFormat: "Y-m-d",
+                minDate: "today",
+                required: true
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             var datepicker = document.getElementById("datepicker");
+            var form = document.getElementById("myForm");
+            form.addEventListener("submit", function(event) {
+                if (!datepicker.value) {
+                    event.preventDefault();
+                    alert("Mohon pilih tanggal.");
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var datepicker = document.getElementById("datepicker2");
             var form = document.getElementById("myForm");
             form.addEventListener("submit", function(event) {
                 if (!datepicker.value) {

@@ -44,7 +44,12 @@
                         <td>{{ $item->judul }}</td>
                         <td>{{ $item->tanggal_booking }}</td>
                         <td>{{ $item->kategori_galeri->nama }}</td>
-                        <td>{{ $item->foto }}</td>
+                        <td>
+                            <a href="{{ asset('storage/galeri/' . $item->foto) }}">
+                                <img src="{{ asset('storage/galeri/' . $item->foto) }}" class="" width="120px"
+                                    height="120px" style="object-fit: cover;" alt="..." />
+                            </a>
+                        </td>
                         <td>
                             <a href="{{ route('kelola-galeri.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('kelola-galeri.destroy', $item->id) }}" method="POST"

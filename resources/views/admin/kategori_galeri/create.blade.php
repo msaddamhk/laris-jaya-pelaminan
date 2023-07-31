@@ -15,7 +15,7 @@
 
     <hr>
 
-    <form action="{{ route('kategori-galeri.store') }}" method="POST">
+    <form action="{{ route('galeri-kategori.store') }}" method="POST">
         @csrf
         <div class="form-group mb-3">
             <label for="nama" class="mb-2">Nama</label>

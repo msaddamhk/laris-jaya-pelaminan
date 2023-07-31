@@ -5,9 +5,9 @@
 
     <div class="d-flex justify-content-between">
 
-        <a href="{{ route('kategori-galeri.create') }}" class="btn btn-primary my-auto">Tambah Kategori</a>
+        <a href="{{ route('galeri-kategori.create') }}" class="btn btn-primary my-auto">Tambah Kategori</a>
 
-        <form action="{{ route('kategori-galeri.index') }}" method="GET">
+        <form action="{{ route('galeri-kategori.index') }}" method="GET">
             <div class="d-flex">
                 <input type="text" name="cari" value="{{ request('cari') }}"
                     placeholder="Masukkan nama Kategori"class="form-control me-2" />
@@ -40,8 +40,8 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->nama }}</td>
                     <td>
-                        <a href="{{ route('kategori-galeri.edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('kategori-galeri.destroy', $item->id) }}" method="POST"
+                        <a href="{{ route('galeri-kategori.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('galeri-kategori.destroy', $item->id) }}" method="POST"
                             style="display:inline;">
                             @csrf
                             @method('DELETE')

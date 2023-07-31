@@ -36,7 +36,7 @@ class KategoriGaleriController extends Controller
 
         kategoriGaleri::create($request->all());
 
-        return redirect()->route('kategori-galeri.index')->with('success', 'Data Berhasi di Tambah');
+        return redirect()->route('galeri-kategori.index')->with('success', 'Data Berhasi di Tambah');
     }
 
     /**
@@ -50,23 +50,26 @@ class KategoriGaleriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(KategoriGaleri $kategori_galeri)
+    public function edit(KategoriGaleri $galeri_kategori)
     {
+        $kategori_galeri = $galeri_kategori;
         return view('admin.kategori_galeri.edit', compact('kategori_galeri'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, KategoriGaleri $kategori_galeri)
+    public function update(Request $request, KategoriGaleri $galeri_kategori)
     {
+        $kategori_galeri = $galeri_kategori;
+
         $request->validate([
             'nama' => 'required|string|max:255|unique:kategori_galeri,nama,' . $kategori_galeri->id,
         ]);
 
         $kategori_galeri->update($request->all());
 
-        return redirect()->route('kategori-galeri.index')
+        return redirect()->route('galeri-kategori.index')
             ->with('success', 'Data Berhasi di Update');
     }
 
@@ -74,11 +77,13 @@ class KategoriGaleriController extends Controller
      * Remove the specified resource from storage.
      */
 
-    public function destroy(KategoriGaleri $kategori_galeri)
+    public function destroy(KategoriGaleri $galeri_kategori)
     {
+        $kategori_galeri = $galeri_kategori;
+
         $kategori_galeri->delete();
 
-        return redirect()->route('kategori-galeri.index')
+        return redirect()->route('galeri-kategori.index')
             ->with('success', 'Data Berhasi di Hapus');
     }
 }

@@ -72,6 +72,9 @@
                         <a class="nav-link navlinkcolor" href="{{ route('home.jasa') }}">Jasa</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link navlinkcolor" href="{{ route('home.galeri') }}">Galeri</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link navlinkcolor" href="{{ route('home') }}#faq">Faq</a>
                     </li>
                 </ul>

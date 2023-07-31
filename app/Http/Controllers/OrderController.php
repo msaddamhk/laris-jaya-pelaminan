@@ -156,8 +156,9 @@ class OrderController extends Controller
 
     public function terpesan(Request $request)
     {
+        $no_rekening = RekeningBank::all();
         $terpesan = Pemesanan::latest()->where('user_id', auth()->user()->id)->get();
-        return view('home.terpesan', compact('terpesan'));
+        return view('home.terpesan', compact('terpesan', 'no_rekening'));
     }
 
     public function edit(Request $request, Pemesanan $pemesanan)

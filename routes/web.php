@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('kategori', KategoriController::class);
 
-        Route::resource('kategori-galeri', KategoriGaleriController::class);
+        Route::resource('galeri-kategori', KategoriGaleriController::class);
 
         Route::resource('kelola-galeri', GaleriController::class);
 

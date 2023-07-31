@@ -18,6 +18,19 @@
                 <h6>Rp {{ number_format($totalKeuntunganPerMinggu) }}</h6>
             </div>
         </div> --}}
+
+        <div class="col-md-6 mb-4">
+            <div class="card p-4">
+                <h6 class="fw-bold">Jumlah Jasa</h6>
+                <h6>{{ $hitung_jasa }} Jasa</h6>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card p-4">
+                <h6 class="fw-bold">Jumlah Vendor</h6>
+                <h6>{{ $hitung_vendor }} Vendor</h6>
+            </div>
+        </div>
         <div class="col-md-6 mb-4">
             <div class="card p-4">
                 <h6 class="fw-bold">Jumlah Pemasukan Bulan ini</h6>

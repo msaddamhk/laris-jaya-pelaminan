@@ -57,20 +57,20 @@
                     Kelola Jasa
                 </a>
 
-                <a href="{{ route('kategori-galeri.index') }}"
-                    class="item-menu my-auto {{ Request::is('kategori-galeri') ? 'active' : '' }}">
+                <a href="{{ route('galeri-kategori.index') }}"
+                    class="item-menu my-auto {{ Request::is('galeri-kategori*') ? 'active' : '' }}">
                     <i class="fa-solid fa-tags me-2"></i>
                     Kelola Kategori Galeri
                 </a>
 
                 <a href="{{ route('kelola-galeri.index') }}"
-                    class="item-menu my-auto {{ Request::is('kelola-galeri') ? 'active' : '' }}">
+                    class="item-menu my-auto {{ Request::is('kelola-galeri*') ? 'active' : '' }}">
                     <i class="bi bi-file-image me-2"></i>
                     Kelola Galeri
                 </a>
 
                 <a href="{{ route('slider.index') }}"
-                    class="item-menu my-auto {{ Request::is('slider') ? 'active' : '' }}">
+                    class="item-menu my-auto {{ Request::is('slider*') ? 'active' : '' }}">
                     <i class="fa-solid fa-sliders me-2"></i>
                     Kelola Slider
                 </a>
