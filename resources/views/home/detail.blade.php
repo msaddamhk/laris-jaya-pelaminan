@@ -178,7 +178,7 @@
             form.addEventListener("submit", function(event) {
                 if (!datepicker.value) {
                     event.preventDefault();
-                    alert("Mohon pilih tanggal.");
+                    alert("Mohon pilih tanggal Akhir.");
                 }
             });
         });
