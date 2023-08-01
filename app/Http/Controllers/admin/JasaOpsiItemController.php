@@ -24,7 +24,6 @@ class JasaOpsiItemController extends Controller
     public function store(Request $request, Jasa $jasa, JasaOpsi $jasaopsi)
     {
         $request->validate([
-            'value' => 'required',
             'label' => 'required',
             'harga' => 'required|integer',
             'modal' => 'required|integer',
@@ -34,7 +33,7 @@ class JasaOpsiItemController extends Controller
         JasaOpsiItem::create([
             "opsi_jasa_id" => $jasaopsi->id,
             "label" => $request->label,
-            "value" => $request->value,
+            "value" => $request->label,
             "modal" => $request->modal,
             "harga" => $request->harga,
         ]);
@@ -51,14 +50,13 @@ class JasaOpsiItemController extends Controller
     public function update(Request $request, Jasa $jasa, JasaOpsi $jasaopsi, JasaOpsiItem $jasaopsiitem)
     {
         $request->validate([
-            'value' => 'required',
             'label' => 'required',
             'harga' => 'required|integer',
             'modal' => 'required|integer',
         ]);
 
         $jasaopsiitem->label = $request->label;
-        $jasaopsiitem->value = $request->value;
+        $jasaopsiitem->value = $request->label;
         $jasaopsiitem->modal = $request->modal;
         $jasaopsiitem->harga = $request->harga;
         $jasaopsiitem->save();

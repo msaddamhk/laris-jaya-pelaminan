@@ -24,7 +24,8 @@ class JasaOpsiController extends Controller
     public function store(Request $request, Jasa $jasa)
     {
         $request->validate([
-            'nama' => 'required|string|unique:jasa_opsi,nama',
+            // 'nama' => 'required|string|unique:jasa_opsi,nama',
+            'nama' => 'required|string',
             'tipe' => 'required|string',
         ]);
 
@@ -45,7 +46,8 @@ class JasaOpsiController extends Controller
     public function update(Request $request, Jasa $jasa, JasaOpsi $jasaopsi)
     {
         $request->validate([
-            'nama' => 'required|string|max:255|unique:jasa_opsi,nama,' . $jasaopsi->id,
+            // 'nama' => 'required|string|max:255|unique:jasa_opsi,nama,' . $jasaopsi->id,
+            'nama' => 'required|string|max:255',
             'tipe' => 'required|string',
         ]);
 

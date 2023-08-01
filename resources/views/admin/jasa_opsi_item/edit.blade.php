@@ -15,14 +15,14 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        {{-- <div class="form-group mb-3">
             <label for="value" class="mb-2">Value</label>
             <input type="text" class="form-control" id="value" name="value" value="{{ $jasaopsiitem->value }}"
                 required>
             @error('value')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
 
         <div class="form-group mb-3">
             <label for="modal" class="mb-2">Modal</label>
