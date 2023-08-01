@@ -93,7 +93,7 @@
                             <small class="mb-2">{{ $opsi->nama }}</small>
                             <div class="d-flex gap-3 mb-3 text-muted">
                                 @foreach ($opsi->jasaItems as $item)
-                                    <div>
+                                    <div style="font-size: 13px">
                                         <input type="{{ $opsi->tipe }}"
                                             id="{{ str()->slug($opsi->nama) . $loop->iteration }}"
                                             name="{{ str()->slug($opsi->nama) }}" value="{{ $item->id }}"
