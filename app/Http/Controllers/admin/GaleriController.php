@@ -37,7 +37,6 @@ class GaleriController extends Controller
             'judul' => 'required|max:255',
             'kategori_galeri_id' => 'required|exists:kategori_galeri,id',
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-
         ]);
 
         $request->foto?->store('public/galeri');

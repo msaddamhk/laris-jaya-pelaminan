@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\JasaOpsiItemController;
 use App\Http\Controllers\admin\KategoriController;
 use App\Http\Controllers\admin\KategoriGaleriController;
 use App\Http\Controllers\admin\KelolaAdminController;
+use App\Http\Controllers\admin\KelolaGambarController;
 use App\Http\Controllers\admin\KelolaPesananController;
 use App\Http\Controllers\admin\RekeningBankController;
 use App\Http\Controllers\admin\SliderController;
@@ -86,6 +87,24 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('dashboard.index');
+
+        Route::get('/jasa/{jasa}/gambar', [KelolaGambarController::class, 'index'])
+            ->name('gambar.index');
+
+        Route::get('/jasa/{jasa}/gambar/tambah', [KelolaGambarController::class, 'create'])
+            ->name('gambar.create');
+
+        Route::post('/jasa/{jasa}/gambar/tambah/store', [KelolaGambarController::class, 'store'])
+            ->name('gambar.store');
+
+        Route::get('/jasa/{jasa}/gambar/{jasafoto}/edit', [KelolaGambarController::class, 'edit'])
+            ->name('gambar.edit');
+
+        Route::post('/jasa/{jasa}/gambar/{jasafoto}/edit/update', [KelolaGambarController::class, 'update'])
+            ->name('gambar.update');
+
+        Route::delete('/jasa/{jasa}/gambar/{jasafoto}/hapus', [KelolaGambarController::class, 'destroy'])
+            ->name('gambar.destroy');
 
         Route::get('/jasa/{jasa}/opsi', [JasaOpsiController::class, 'index'])
             ->name('opsi.index');

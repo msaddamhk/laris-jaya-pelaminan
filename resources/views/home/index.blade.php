@@ -67,7 +67,7 @@
         <div class="container">
             <h1 class="text-black text-center mb-3 text-uppercase" style="font-size: 40px; font-weight: 600"
                 data-aos="fade-in" data-aos-delay="100">
-                Keungulan Laris Jaya Pelaminan
+                Keunggulan Laris Jaya Pelaminan
             </h1>
             <p class="text-center" style="color: rgb(55, 55, 55); font-weight: 400; font-size: 12px" data-aos="fade-in"
                 data-aos-delay="100">
@@ -127,8 +127,9 @@
                     <div class="col-md-3 mb-4">
                         <a href="{{ route('detail', [$item]) }}" class="text-decoration-none text-black">
                             <div>
-                                <img src="{{ asset('storage/' . $item->jasaFoto->first()->foto) }}" class="card-img-top"
-                                    height="260px" style="object-fit: cover; width: 100%" alt="..." />
+                                <img src="{{ asset('storage/jasa_foto/' . $item->jasaFoto->first()->foto) }}"
+                                    class="card-img-top" height="260px" style="object-fit: cover; width: 100%"
+                                    alt="..." />
                                 <div class="card-bod">
                                     <h5 class="card-title fw-bold mb-1 mt-2"> {{ $item->nama }}</h5>
                                     <p class="card-text" style="color: #a1947c">Rp {{ number_format($item->harga) }}</p>
@@ -190,7 +191,7 @@
 
 
 
-    <section id="faq" class="pb-5">
+    <section id="faq" class="pb-5" style="padding-top: 75px">
         <div class="container pb-5">
             <h1 class="text-black text-center text-uppercase mb-4" style="font-size: 40px; font-weight: 600"
                 data-aos="fade-in" data-aos-delay="100">

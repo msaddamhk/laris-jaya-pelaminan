@@ -139,14 +139,14 @@
                 @enderror
             </div>
 
-            <div class="form-group mb-3">
+            {{-- <div class="form-group mb-3">
                 <label for="foto">Foto</label>
                 <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto"
                     name="foto[]" multiple>
                 @error('foto')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> --}}
 
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

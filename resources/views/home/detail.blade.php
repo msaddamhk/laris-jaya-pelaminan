@@ -9,8 +9,11 @@
                         <div class="carousel-inner">
                             @foreach ($jasa->jasaFoto as $key => $item)
                                 <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
-                                    <img src="{{ asset('storage/' . $item->foto) }}" class="d-block w-100  rounded-1"
-                                        style="height: 450px;object-fit:cover" alt="...">
+                                    <a href="{{ asset('storage/jasa_foto/' . $item->foto) }}">
+                                        <img src="{{ asset('storage/jasa_foto/' . $item->foto) }}"
+                                            class="d-block w-100  rounded-1" style="height: 450px;object-fit:cover"
+                                            alt="...">
+                                    </a>
                                 </div>
                             @endforeach
                         </div>

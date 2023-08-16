@@ -52,6 +52,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
+                                    <a href="{{ route('gambar.index', $items) }}"
+                                        class="text-decoration-none text-black ms-2">
+                                        Kelola Gambar</a>
+                                </li>
+                                <hr>
+                                <li>
                                     <a href="{{ route('opsi.index', $items) }}"
                                         class="text-decoration-none text-black ms-2">
                                         Opsi</a>

@@ -59,8 +59,9 @@
                     <div class="col-md-3 mb-3">
                         <a href="{{ route('detail', [$item]) }}" class="text-decoration-none text-black">
                             <div>
-                                <img src="{{ asset('storage/' . $item->jasaFoto->first()->foto) }}" class="card-img-top"
-                                    height="260px" style="object-fit: cover; width: 100%" alt="..." />
+                                <img src="{{ asset('storage/jasa_foto/' . $item->jasaFoto->first()->foto) }}"
+                                    class="card-img-top" height="260px" style="object-fit: cover; width: 100%"
+                                    alt="..." />
                                 <div>
                                     <h5 class="card-title fw-bold mb-1 mt-2"> {{ $item->nama }}</h5>
                                     <p class="card-text" style="color: #a1947c">Rp {{ number_format($item->harga) }}</p>

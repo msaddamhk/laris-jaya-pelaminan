@@ -55,13 +55,24 @@ class JasaController extends Controller
 
         $jasa = Jasa::create($request->except('foto'));
 
+        // foreach ($request->file('foto') as $fotoFile) {
+        //     $request->foto?->store('public/jasa_foto');
+        //     $jasaFoto = new JasaFoto();
+        //     $jasaFoto->foto = $request->foto ? $request->foto->hashName() : null;
+        //     $jasaFoto->jasa_id = $jasa->id;
+        //     $jasaFoto->save();
+        // }
+
         foreach ($request->file('foto') as $fotoFile) {
-            $fotoPath = $fotoFile->store('jasa_foto', 'public');
-            $jasaFoto = new JasaFoto();
-            $jasaFoto->foto = $fotoPath;
-            $jasaFoto->jasa_id = $jasa->id;
-            $jasaFoto->save();
+            if ($fotoFile) {
+                $path = $fotoFile->store('public/jasa_foto');
+                $jasaFoto = new JasaFoto();
+                $jasaFoto->foto = $fotoFile->hashName();
+                $jasaFoto->jasa_id = $jasa->id;
+                $jasaFoto->save();
+            }
         }
+
         return redirect()->route('jasa.index')->with('success', 'Jasa created successfully.');
     }
 
@@ -97,8 +108,8 @@ class JasaController extends Controller
             'tipe_unit' => 'required|string|max:255',
             'jumlah_minimal' => 'required|integer',
             'jumlah_maksimal' => 'required|integer',
-            'foto' => 'nullable|array',
-            'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'foto' => 'nullable|array',
+            // 'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_cod' => 'required|boolean',
             'banyak_hari' => 'required|boolean',
             'status_pengembalian' => 'required|boolean',
@@ -106,29 +117,35 @@ class JasaController extends Controller
 
         $jasa->update($request->except('foto'));
 
-        if ($request->hasFile('foto')) {
-            foreach ($request->file('foto') as $fotoFile) {
-                $fotoPath = $fotoFile->store('jasa_foto', 'public');
-                $jasaFoto = new JasaFoto();
-                $jasaFoto->foto = $fotoPath;
-                $jasaFoto->jasa_id = $jasa->id;
-                $jasaFoto->save();
-            }
-        }
+        // foreach ($jasa->jasaFoto as $foto) {
+        //     Storage::delete('public/' . $foto->foto);
+        //     $foto->delete();
+        // }
 
-        return redirect()->route('jasa.index')->with('success', 'Jasa updated successfully.');
+        // if ($request->hasFile('foto')) {
+        //     foreach ($request->file('foto') as $fotoFile) {
+        //         $fotoPath = $fotoFile->store('jasa_foto', 'public');
+        //         $jasaFoto = new JasaFoto();
+        //         $jasaFoto->foto = $fotoPath;
+        //         $jasaFoto->jasa_id = $jasa->id;
+        //         $jasaFoto->save();
+        //     }
+        // }
+
+        return redirect()->route('jasa.index')->with('success', 'Jasa berhasil di update.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Jasa $jasa)
+    public function destroy(Jasa $jasa)
     {
         foreach ($jasa->jasaFoto as $foto) {
-            Storage::delete('public/' . $foto->foto);
+            Storage::delete('public/jasa_foto/' . $foto->foto);
             $foto->delete();
         }
         $jasa->delete();
+
         return redirect()->route('jasa.index')->with('success', 'Jasa deleted successfully.');
     }
 }
