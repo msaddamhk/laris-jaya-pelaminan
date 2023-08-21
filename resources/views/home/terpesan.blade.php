@@ -39,13 +39,40 @@
                         </div>
 
                         <div class="col-md-6">
-                            <h6 class="fw-bold">No Rekening</h6>
+
                             @if ($item->metode_pembayaran == 'online')
+                                <h6 class="fw-bold">No Rekening</h6>
                                 @foreach ($no_rekening as $rekening)
                                     <h6>{{ $rekening->nama_bank }}</h6>
                                     <h6>{{ $rekening->no_rekening }}</h6>
                                 @endforeach
                             @endif
+
+                            @if ($item->metode_pembayaran == 'online' && $item->status_pembayaran == '0')
+                                @php
+                                    $waktuMulai = $item->created_at;
+                                    $waktuAkhir = $waktuMulai->copy()->addHours(1);
+                                @endphp
+                                <p>Waktu tersisa: <span id="countdown_{{ $item->id }}"></span></p>
+
+                                <script>
+                                    function updateCountdown{{ $item->id }}() {
+                                        var endTime = new Date("{{ $waktuAkhir }}").getTime();
+                                        var now = new Date().getTime();
+                                        var timeRemaining = endTime - now;
+
+                                        if (timeRemaining > 0) {
+                                            var formattedTime = new Date(timeRemaining).toISOString().substr(11, 8);
+                                            document.getElementById('countdown_{{ $item->id }}').textContent = formattedTime;
+                                        } else {
+                                            document.getElementById('countdown_{{ $item->id }}').textContent = "Waktu telah habis.";
+                                        }
+                                    }
+                                    updateCountdown{{ $item->id }}();
+                                    setInterval(updateCountdown{{ $item->id }}, 1000);
+                                </script>
+                            @endif
+
                         </div>
                     </div>
                     <hr>
@@ -104,9 +131,11 @@
                             @endif
                             @if ($item->metode_pembayaran == 'cod')
                                 @if ($item->status_pembayaran == '0')
-                                    <a class="btn btn-primary btn-sm" href="">Silahkan Hubungi
-                                        Admin
-                                        untuk pelunasan</a>
+                                    <a class="btn btn-primary btn-sm"
+                                        href="https://web.whatsapp.com/send?phone=62895600765363&text=Halo%20Admin%2C%20saya%20ingin%20melakukan%20pelunasan%20pesanan"
+                                        target="_blank">
+                                        Silahkan Hubungi Admin untuk pelunasan
+                                    </a>
                                 @else
                                     <a class="btn btn-success btn-sm" href="{{ route('invoice', $item->id) }}">Download
                                         Invoice</a>

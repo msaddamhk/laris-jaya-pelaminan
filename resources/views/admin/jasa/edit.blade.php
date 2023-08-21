@@ -1,5 +1,13 @@
 @extends('Layout.admin.main')
 
+@push('heads')
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+@endpush
+
 @section('content')
     <div class="container">
 
@@ -85,12 +93,16 @@
                 @enderror
             </div>
 
-            <div class="form-group mb-3">
-                <label for="deskripsi">Deskripsi</label>
-                <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi">{{ old('deskripsi', $jasa->deskripsi) }}</textarea>
-                @error('deskripsi')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="mb-3">
+                <label class="mb-1">Deskripsi</label>
+                <div class="form-group">
+                    <textarea class="form-control form-control-sm" id="summernote" name="deskripsi" rows="50">
+                        {!! old('deskripsi', $jasa->deskripsi) !!}
+                </textarea>
+                    @error('deskripsi')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
             </div>
 
             <div class="form-group mb-3">
@@ -152,3 +164,13 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 435
+            });
+        });
+    </script>
+@endpush

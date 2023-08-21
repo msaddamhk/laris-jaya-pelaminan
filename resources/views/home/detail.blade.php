@@ -39,10 +39,9 @@
                     </h1>
                     <hr>
                     <p style="color: rgb(55, 55, 55); font-weight: 400; font-size: 12px;text-align:justify">
-                        {{ $jasa->deskripsi }}
+                        {!! $jasa->deskripsi !!}
                     </p>
                 </div>
-
 
                 <div class="col-md-4 my-aut card p-4" data-aos="fade-in" data-aos-delay="350">
 
@@ -130,10 +129,16 @@
                                 pesanan <b class="text-danger fs-6">{{ $jasa->jumlah_minimal }}</b></p>
                         @endif
 
-                        <button type="submit" class="btn btn-outline-dark btn-sm me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
+                        <button type="submit" class="btn btn-outline-dark btn-sm me-2">
                             Beli Sekarang ->
                         </button>
+
+                        <a class="btn btn-dark btn-sm me-2"
+                            href="https://web.whatsapp.com/send?phone=62895600765363&text=Halo%20Admin%2C%20saya%20ingin%20melakukan%20konsultasi%20mengenai%20{{ $jasa->nama }}"
+                            target="_blank">
+                            <i class="bi bi-whatsapp"></i> Konsultasi
+                        </a>
+
                     </form>
                 </div>
             </div>

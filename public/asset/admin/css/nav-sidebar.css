@@ -5,6 +5,7 @@
   background-color: black;
   transition: all 0.5s ease;
   padding-bottom: 48px;
+  overflow-x: hidden;
 }
 
 .sidebar.active {
@@ -19,7 +20,7 @@
 .menu>p {
   color: #000000;
   font-size: 14px;
-  padding-left: 40px;
+  padding-left: 20px;
   margin-bottom: 12px;
 }
 
@@ -28,7 +29,7 @@
   font-size: 12px;
   color: #dad7d0;
   font-weight: 500;
-  padding: 14px 40px;
+  padding: 14px 25px;
   position: relative;
   align-items: center;
   text-decoration: none;
@@ -37,7 +38,8 @@
 
 .item-menu.active,
 .item-menu:hover {
-  color: #aba69b;
+  /* color: #aba69b; */
+  color: #ea1f00;
   font-weight: 600;
 }
 

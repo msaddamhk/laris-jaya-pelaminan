@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/update-profil/{user}/store', [UpdateUserController::class, 'update'])->name('home.update.profile.update');
 
-    Route::get('/pesanann', [OrderController::class, 'terpesan'])->name('terpesan');
+    Route::get('/daftar-pesanan', [OrderController::class, 'terpesan'])->name('terpesan');
 
     Route::get('/pesanan/{pemesanan}/edit', [OrderController::class, 'edit'])->name('edit.pesanan');
 

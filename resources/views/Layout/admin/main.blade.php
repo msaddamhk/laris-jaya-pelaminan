@@ -24,6 +24,7 @@
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    @stack('heads')
 </head>
 
 <body class="bg-black">
@@ -36,7 +37,7 @@
         </div>
         <div class="pt-2 d-flex flex-column gap-5">
             <div class="menu p-0">
-                <p class="text-white fw-bold mt-4">Admin</p>
+                <p class="text-white fw-bold mt-4">Laris Jaya</p>
 
                 <a href="{{ route('dashboard.index') }}"
                     class="item-menu {{ Request::is('dashboard*') ? 'active' : '' }}">
@@ -140,9 +141,9 @@
 
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    </script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
@@ -168,8 +169,6 @@
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
     </script>
 
-    @stack('scripts')
-
     <script>
         const choices = new Choices('#user', {
             searchEnabled: true,
@@ -178,6 +177,8 @@
             placeholderValue: 'Pilih',
         });
     </script>
+
+    @stack('scripts')
 
 </body>
 
