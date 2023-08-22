@@ -98,7 +98,9 @@
                     <button type="button" class="border-0 bg-transparent text-white dropdown-toggle item-menu"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user me-2"></i>
-                        Hi, {{ auth()->user()->name }}
+                        <span class="d-inline-block text-truncate" style="max-width: 120px">
+                            Hi, {{ auth()->user()->name }}
+                        </span>
                     </button>
                     <ul class="dropdown-menu item-menu">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="m-0">

@@ -50,9 +50,12 @@
                         {{ $jasa->nama }}
                     </h5>
 
-                    <h6 class="text-uppercase fw-bold mt-2 mt-lg-0" data-aos="fade-in" data-aos-delay="100">
-                        Rp {{ number_format($jasa->harga) }}
-                    </h6>
+                    @if ($jasa->harga != '0')
+                        <h6 class="text-uppercase fw-bold mt-2 mt-lg-0" data-aos="fade-in" data-aos-delay="100">
+                            Rp {{ number_format($jasa->harga) }}
+                        </h6>
+                    @endif
+
 
                     <hr />
 

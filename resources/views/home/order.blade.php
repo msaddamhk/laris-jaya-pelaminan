@@ -33,7 +33,9 @@
                                         <th scope="col">Produk</th>
                                         <th scope="col">Jumlah</th>
                                         <th scope="col">Hari</th>
-                                        <th scope="col">Harga</th>
+                                        @if ($jasa->harga != '0')
+                                            <th scope="col">Harga</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,7 +71,9 @@
                                             {{ $tanggal_reservasi }} - {{ $tanggal_akhir }} ({{ $jumlah_hari }}) Hari
                                         </td>
 
-                                        <td> Rp {{ number_format($jasa->harga) }}</td>
+                                        @if ($jasa->harga != '0')
+                                            <td> Rp {{ number_format($jasa->harga) }}</td>
+                                        @endif
                                     </tr>
                                 </tbody>
                             </table>
@@ -162,7 +166,6 @@
                             <hr>
 
                             <div id="x">
-
                                 @foreach ($bank as $item)
                                     <small class="text-muted">Nama Bank : {{ $item->nama_bank }}</small>
                                     <small class="text-muted">No Rekening : {{ $item->no_rekening }}</small>
@@ -221,7 +224,4 @@
             });
         </script>
     @endpush
-
-
-
 @endsection
