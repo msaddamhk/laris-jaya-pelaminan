@@ -32,7 +32,6 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Tipe</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -41,7 +40,6 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $items->nama }}</td>
-                    <td>{{ $items->tipe }}</td>
                     <td>
                         <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"

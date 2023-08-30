@@ -90,6 +90,7 @@
                 $bookingDates = $item->booking->pluck('tanggal_booking')->sort();
                 $startDate = $bookingDates->first();
                 $endDate = $bookingDates->last();
+                // $today = \Carbon\Carbon::createFromFormat('m-d-Y', '11-13-2023');
                 $today = now();
                 $daysLate = 0;
                 
@@ -121,6 +122,30 @@
                         </h6>
                         <h6>Catatan Pembayaran : {{ $item->catatan_pembayaran }}</h6>
                         <h6>Total : Rp {{ number_format($item->jumlah()) }}</h6>
+
+
+                        @if ($item->status_pembayaran == 0)
+                            @if ($item->catatan_pembayaran == '25%')
+                                <?php
+                                $total = $item->jumlah();
+                                $Bayarawal = ceil($total * 0.25);
+                                ?>
+                                <h6>Yang harus di bayar di awal : Rp {{ number_format($Bayarawal) }}</h6>
+                            @endif
+                        @endif
+
+                        @if ($item->catatan_pembayaran == '25%')
+                            @if ($item->status_pembayaran == 1)
+                                <?php
+                                $total = $item->jumlah();
+                                $sudahBayar = ceil($total * 0.25);
+                                $sisa = $total - $sudahBayar;
+                                ?>
+                                <h6>Yang Sudah Bayar : Rp {{ number_format($sudahBayar) }}</h6>
+                                <h6>Sisa : Rp {{ number_format($sisa) }}</h6>
+                            @endif
+                        @endif
+
                     </div>
 
                     <div class="col-md-6 mt-3 mt-lg-0">
@@ -190,8 +215,11 @@
                         </a>
                     @endif
 
-                    <a href="{{ route('pemesanan.edit', $item->id) }}" class="btn btn-warning btn-sm"
-                        @if ($item->status_pembayaran == '0') disabled @endif>Update Pembayaran</a>
+                    @if ($item->metode_pembayaran == 'cod')
+                        <a href="{{ route('pemesanan.edit', $item->id) }}" class="btn btn-warning btn-sm"
+                            @if ($item->status_pembayaran == '0') disabled @endif>Update Pembayaran</a>
+                    @endif
+
                 </div>
             </div>
         @endforeach

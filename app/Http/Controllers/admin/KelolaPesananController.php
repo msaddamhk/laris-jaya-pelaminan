@@ -12,7 +12,7 @@ class KelolaPesananController extends Controller
     public function index(Request $request)
     {
         $pemesanan = Pemesanan::where('no_pemesanan', 'like', '%' . request('cari') . '%')
-            ->orderBy('status_pembayaran', 'desc')
+            ->latest()
             ->paginate(15);
         return view('admin.pesanan.index', compact('pemesanan'));
     }
@@ -28,7 +28,6 @@ class KelolaPesananController extends Controller
 
         $request->validate([
             'status_pembayaran' => 'required',
-            'catatan_pembayaran' => 'required',
         ]);
 
         $pemesanan->status_pembayaran = $request->status_pembayaran;

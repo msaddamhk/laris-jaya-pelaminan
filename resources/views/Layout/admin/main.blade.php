@@ -123,10 +123,10 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-end gap-3">
-                    <button class="sidebarCollapseDefault bg-transparent p-0 border-0 d-none d-md-block"
+                    {{-- <button class="sidebarCollapseDefault bg-transparent p-0 border-0 d-none d-md-block"
                         aria-label="Hamburger Button">
                         <i class="bi bi-list"></i>
-                    </button>
+                    </button> --}}
 
                     <button data-bs-toggle="offcanvas" data-bs-target=".sidebar" aria-controls="sidebar"
                         aria-label="Hamburger Button" class="sidebarCollapseMobile btn p-0 border-0 d-block d-md-none">
@@ -153,7 +153,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
-    <script>
+    {{-- <script>
         document.querySelector('form.needs-validation').addEventListener('submit', function(event) {
             if (!event.target.checkValidity()) {
                 event.preventDefault();
@@ -165,20 +165,20 @@
                 event.stopPropagation();
             }
         }, false);
-    </script>
+    </script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
     </script>
 
-    <script>
+    {{-- <script>
         const choices = new Choices('#user', {
             searchEnabled: true,
             searchChoices: true,
             placeholder: true,
             placeholderValue: 'Pilih',
         });
-    </script>
+    </script> --}}
 
     @stack('scripts')
 

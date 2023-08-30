@@ -26,17 +26,17 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        {{-- <div class="form-group mb-3">
             <select class="form-select" aria-label="Default select example" name="tipe" required>
                 <option selected>Pilih</option>
                 <option value="radio" {{ $jasaopsi->tipe == 'radio' ? 'selected' : '' }}>radio</option>
-                {{-- <option value="select" {{ $jasaopsi->tipe == 'select' ? 'selected' : '' }}>select</option> --}}
+                <option value="select" {{ $jasaopsi->tipe == 'select' ? 'selected' : '' }}>select</option>
             </select>
 
             @error('tipe')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 @endsection

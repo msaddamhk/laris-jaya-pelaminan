@@ -132,7 +132,7 @@
                                     alt="..." />
                                 <div class="card-bod">
                                     <h5 class="card-title fw-bold mb-1 mt-2"> {{ $item->nama }}</h5>
-                                    @if ($jasa->harga != '0')
+                                    @if ($item->harga != '0')
                                         <p class="card-text mb-2" style="color: #a1947c">
                                             Rp {{ number_format($item->harga) }}
                                     @endif

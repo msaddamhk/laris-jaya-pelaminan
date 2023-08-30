@@ -41,10 +41,13 @@
                                 <tbody>
                                     <tr>
                                         <td class="d-flex">
-                                            <img src="{{ asset('storage/' . $jasa->jasaFoto->first()->foto) }}"
-                                                width="60px" height="60px" alt="" data-aos="fade-in"
-                                                data-aos-delay="150" style="object-fit: cover" loading="lazy" />
+                                            <a href="{{ asset('storage/jasa_foto/' . $jasa->jasaFoto->first()->foto) }}">
+                                                <img src="{{ asset('storage/jasa_foto/' . $jasa->jasaFoto->first()->foto) }}"
+                                                    width="60px" height="60px" alt="" data-aos-delay="150"
+                                                    style="object-fit: cover" loading="lazy" />
+                                            </a>
                                             <p class="my-auto ms-3">{{ $jasa->nama }}</p>
+
                                         </td>
                                         <td>
                                             <input type="number" class="form-control" name="jumlah" id="jumlahInput"
@@ -94,13 +97,18 @@
                             <small class="text-muted">{{ $opsi->nama }}</small>
                             <div class="d-flex gap-3 mt-1">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    @foreach ($opsi->jasaItems as $item)
+                                    @foreach ($opsi->jasaItems->sortBy('harga') as $item)
                                         <a @class([
-                                            'btn btn-sm btn-primary',
+                                            'btn btn-sm btn-outline-dark',
                                             'active' => request(str()->slug($opsi->nama)) == $item->id,
                                         ])
-                                            href="{{ route('order.index', [...request()->all(), str()->slug($opsi->nama) => $item->id]) }}">
-                                            {{ $item->label }} (Rp {{ number_format($item->harga) }})
+                                            href="{{ route('order.index', [...request()->all(), str()->slug($opsi->nama) => $item->id]) }}"
+                                            style="font-size:11px">
+
+                                            {{ $item->label }}
+                                            @if ($item->harga != '0')
+                                                (Rp {{ number_format($item->harga) }})
+                                            @endif
                                         </a>
                                         @php
                                             if (request(str()->slug($opsi->nama)) == $item->id) {
@@ -138,6 +146,17 @@
 
                     <div class="col-md-4">
                         <div class="card p-3">
+                            <h6 class="fw-bold">Catatan Pembayaran</h6>
+                            <hr>
+
+                            <select class="form-select mb-3" name="catatan_pembayaran" aria-label="Default select example"
+                                onchange="updateTotal()" required>
+                                <option selected disabled>Pilih</option>
+                                <option value="lunas">Lunas</option>
+                                <option value="25%">Bayar 25 %</option>
+                            </select>
+
+                            <small class="mb-3">* Minimal pembayaran awal 25% dari harga pesanan</small>
 
                             <h6 class="fw-bold">Pilih Metode Pembayaran</h6>
                             <hr>
@@ -165,21 +184,22 @@
 
                             <hr>
 
-                            <div id="x">
+                            <div id="x" class="mb-2">
                                 @foreach ($bank as $item)
-                                    <small class="text-muted">Nama Bank : {{ $item->nama_bank }}</small>
-                                    <small class="text-muted">No Rekening : {{ $item->no_rekening }}</small>
+                                    <p class="text-muted m-0">Nama Bank : {{ $item->nama_bank }}</p>
+                                    <p class="text-muted m-0">No Rekening : {{ $item->no_rekening }}</p>
+                                    <p class="text-muted">Atas Nama : {{ $item->atas_nama }}</p>
                                 @endforeach
 
                                 <p class="mb-2">Upload Bukti Pembayaran</p>
                                 <input type="file" class="form-control mb-2" name="bukti_pembayaran">
 
-                                <small class="mb-2" style="font-size: 10px">* Silahkan Lewati jika ingin membayar
-                                    nanti</small>
+                                <small class="" style="font-size: 12px">Silahkan Lewati jika ingin membayar
+                                    nanti, batas pembayaran 1 jam setelah pesanan di buat</small>
                             </div>
 
-
                             <h6 class="fw-bold" id="total-harga">Total : Rp {{ number_format($totalHarga) }}</h6>
+                            <h6 class="fw-bold" id="harga-baru"></h6>
 
                             <button type="submit" class="btn btn-success btn-sm" style="font-size: 12px"
                                 @if (auth()->user()->no_hp === null || auth()->user()->alamat === null) disabled @endif>
@@ -222,6 +242,27 @@
 
                 window.location.href = currentUrlWithoutParams + '?' + currentParams.toString();
             });
+        </script>
+
+        <script>
+            const totalHarga = <?= $totalHarga ?>;
+            const hargaBaruElement = document.getElementById('harga-baru');
+
+            function updateTotal() {
+                const selectElement = document.querySelector('select[name="catatan_pembayaran"]');
+                const selectedValue = selectElement.value;
+
+                if (selectedValue === "lunas") {
+                    hargaBaruElement.textContent = "";
+                } else if (selectedValue === "25%") {
+                    const hargaBaru = Math.ceil(totalHarga * 0.25);
+                    hargaBaruElement.textContent = `Yang harus di bayar di awal: Rp ${numberFormat(hargaBaru)}`;
+                }
+            }
+
+            function numberFormat(number) {
+                return new Intl.NumberFormat('id-ID').format(number);
+            }
         </script>
     @endpush
 @endsection

@@ -73,7 +73,7 @@
                         <a class="nav-link navlinkcolor" href="{{ route('home.galeri') }}">Galeri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navlinkcolor" href="{{ route('home') }}#faq">Faq</a>
+                        <a class="nav-link navlinkcolor" href="{{ route('home') }}#faq">FAQ</a>
                     </li>
                 </ul>
                 @auth
@@ -156,8 +156,8 @@
 
                         <div class="card border-0" style="border-radius: 0">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7942.002394703513!2d95.34532217090641!3d5.5668371621254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3040370856eb44a3%3A0xb067a6f9b67914b2!2sPineung%2C%20Kec.%20Syiah%20Kuala%2C%20Kota%20Banda%20Aceh%2C%20Aceh!5e0!3m2!1sid!2sid!4v1680078139799!5m2!1sid!2sid"
-                                style="border: 0" allowfullscreen="" loading="lazy"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7942.3951520059!2d95.35271595!3d5.53769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3040378007e697e1%3A0x486f5c8d5f10a148!2sPango%20Deah%2C%20Kec.%20Ulee%20Kareng%2C%20Kota%20Banda%20Aceh%2C%20Aceh!5e0!3m2!1sid!2sid!4v1693387747152!5m2!1sid!2sid"
+                                style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
 

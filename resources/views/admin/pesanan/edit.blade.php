@@ -11,7 +11,6 @@
             @csrf
             @method('PUT')
 
-
             <div class="form-group mb-3">
                 <label for="status_pembayaran">Status Pembayaran</label>
                 <select class="form-select @error('status_pembayaran') is-invalid @enderror" id="status_pembayaran"
@@ -24,11 +23,12 @@
                 @enderror
             </div>
 
-            <div class="form-group mb-3">
-                <label for="nama" class="mb-2">Catatan Pembayaran</label>
-                <input type="text" class="form-control" id="nama" name="catatan_pembayaran"
-                    value="{{ $pemesanan->catatan_pembayaran }}" required>
-            </div>
+            <select class="form-select mb-3" name="catatan_pembayaran" aria-label="Default select example"
+                onchange="updateTotal()">
+                <option disabled>Pilih</option>
+                <option value="lunas" {{ $pemesanan->catatan_pembayaran === 'lunas' ? 'selected' : '' }}>Lunas</option>
+                <option value="25%" {{ $pemesanan->catatan_pembayaran === '25%' ? 'selected' : '' }}>25%</option>
+            </select>
 
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

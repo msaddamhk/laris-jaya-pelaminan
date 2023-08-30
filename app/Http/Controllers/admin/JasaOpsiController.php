@@ -26,13 +26,12 @@ class JasaOpsiController extends Controller
         $request->validate([
             // 'nama' => 'required|string|unique:jasa_opsi,nama',
             'nama' => 'required|string',
-            'tipe' => 'required|string',
         ]);
 
         JasaOpsi::create([
             "jasa_id" => $jasa->id,
             "nama" => $request->nama,
-            "tipe" => $request->tipe,
+            "tipe" => "radio",
         ]);
 
         return redirect()->route('opsi.index', $jasa)->with('success', 'Data Berhasi di Tambah');
@@ -48,11 +47,9 @@ class JasaOpsiController extends Controller
         $request->validate([
             // 'nama' => 'required|string|max:255|unique:jasa_opsi,nama,' . $jasaopsi->id,
             'nama' => 'required|string|max:255',
-            'tipe' => 'required|string',
         ]);
 
         $jasaopsi->nama = $request->input('nama');
-        $jasaopsi->tipe = $request->input('tipe');
         $jasaopsi->save();
 
         return redirect()->route('opsi.index', [$jasa, $jasaopsi])->with('success', 'Data Berhasi di Update');

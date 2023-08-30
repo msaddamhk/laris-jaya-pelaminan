@@ -76,7 +76,6 @@ class OrderController extends Controller
     //     return back()->with('error', 'Jasa ini tidak tersedia');
     // }
 
-
     public function store(Request $request)
     {
         $tanggal = $request->input('tanggal_reservasi');
@@ -103,6 +102,7 @@ class OrderController extends Controller
             $pemesanan->user_id = auth()->user()->id;
             $pemesanan->no_pemesanan = $noPemesanan;
             $pemesanan->metode_pembayaran = $request->metode_pembayaran;
+            $pemesanan->catatan_pembayaran = $request->catatan_pembayaran;
 
             $request->bukti_pembayaran?->store('public/bukti_pembayaran');
 
@@ -168,10 +168,18 @@ class OrderController extends Controller
 
     public function update(Request $request, Pemesanan $pemesanan)
     {
-        $request->file('bukti_pembayaran')->store('public/bukti_pembayaran');
-        $pemesanan->bukti_pembayaran = $request->file('bukti_pembayaran')->hashName();
-        $pemesanan->status_pembayaran = true;
-        $pemesanan->save();
+        if ($pemesanan->status_pembayaran == "0") {
+            $request->file('bukti_pembayaran')->store('public/bukti_pembayaran');
+            $pemesanan->bukti_pembayaran = $request->file('bukti_pembayaran')->hashName();
+            $pemesanan->status_pembayaran = true;
+            $pemesanan->save();
+        } else {
+            $request->file('bukti_pembayaran')->store('public/bukti_pembayaran');
+            $pemesanan->bukti_pembayaran = $request->file('bukti_pembayaran')->hashName();
+            $pemesanan->catatan_pembayaran = "lunas";
+            $pemesanan->save();
+        }
+
         return redirect()->route('terpesan');
     }
 

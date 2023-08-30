@@ -9,6 +9,7 @@
                     $bookingDates = $item->booking->pluck('tanggal_booking')->sort();
                     $startDate = $bookingDates->first();
                     $endDate = $bookingDates->last();
+                    // $today = \Carbon\Carbon::createFromFormat('m-d-Y', '11-13-2023');
                     $today = now();
                     $daysLate = 0;
                     
@@ -28,6 +29,7 @@
                                 Hari)
                             </h6>
                             <h6>Metode Pembayaran : {{ $item->metode_pembayaran }}</h6>
+                            <h6>Catatan Pembayaran : {{ $item->catatan_pembayaran }}</h6>
                             <h6>Status Pembayaran :
                                 @if ($item->status_pembayaran == 1)
                                     SUDAH BAYAR
@@ -36,6 +38,29 @@
                                 @endif
                             </h6>
                             <h6>Total : Rp {{ number_format($item->jumlah()) }}</h6>
+
+                            @if ($item->status_pembayaran == 0)
+                                @if ($item->catatan_pembayaran == '25%')
+                                    <?php
+                                    $total = $item->jumlah();
+                                    $Bayarawal = ceil($total * 0.25);
+                                    ?>
+                                    <h6>Yang harus di bayar di awal : Rp {{ number_format($Bayarawal) }}</h6>
+                                @endif
+                            @endif
+
+                            @if ($item->catatan_pembayaran == '25%')
+                                @if ($item->status_pembayaran == 1)
+                                    <?php
+                                    $total = $item->jumlah();
+                                    $sudahBayar = ceil($total * 0.25);
+                                    $sisa = $total - $sudahBayar;
+                                    ?>
+                                    <h6>Yang Sudah Bayar : Rp {{ number_format($sudahBayar) }}</h6>
+                                    <h6>Sisa : Rp {{ number_format($sisa) }}</h6>
+                                @endif
+                            @endif
+
                         </div>
 
                         <div class="col-md-6">
@@ -142,7 +167,22 @@
                                 @endif
                             @endif
                         @elseif ($item->status_pembayaran == '1')
-                            <a class="btn btn-success btn-sm" href="{{ route('invoice', $item->id) }}">Download Invoice</a>
+                            @if ($item->catatan_pembayaran == 'lunas')
+                                <a class="btn btn-success btn-sm" href="{{ route('invoice', $item->id) }}">Download
+                                    Invoice</a>
+                            @else
+                                @if ($item->metode_pembayaran == 'online')
+                                    <a class="btn btn-primary btn-sm" href="{{ route('edit.pesanan', $item->id) }}">Upload
+                                        bukti
+                                        Pelunasan</a>
+                                @else
+                                    <a class="btn btn-primary btn-sm"
+                                        href="https://web.whatsapp.com/send?phone=62895600765363&text=Halo%20Admin%2C%20saya%20ingin%20melakukan%20pelunasan%20pesanan"
+                                        target="_blank">
+                                        Silahkan Hubungi Admin untuk pelunasan
+                                    </a>
+                                @endif
+                            @endif
                         @endif
                     </div>
                 </div>

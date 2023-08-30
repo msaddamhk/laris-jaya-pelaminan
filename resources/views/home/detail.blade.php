@@ -38,9 +38,11 @@
                         Deskripsi
                     </h1>
                     <hr>
+
                     <p style="color: rgb(55, 55, 55); font-weight: 400; font-size: 12px;text-align:justify">
                         {!! $jasa->deskripsi !!}
                     </p>
+
                 </div>
 
                 <div class="col-md-4 my-aut card p-4" data-aos="fade-in" data-aos-delay="350">
@@ -94,22 +96,27 @@
 
                         <hr>
 
+
                         @foreach ($jasa->jasaOpsi as $opsi)
-                            <small class="mb-2">{{ $opsi->nama }}</small>
-                            <div class="d-flex gap-3 mb-3 text-muted">
-                                @foreach ($opsi->jasaItems as $item)
+                            <h6 class="mb-2">{{ $opsi->nama }}</h6>
+                            <div class="">
+                                @foreach ($opsi->jasaItems->sortBy('harga') as $item)
                                     <div style="font-size: 13px">
-                                        <input type="{{ $opsi->tipe }}"
+                                        <input class="mb-3" type="{{ $opsi->tipe }}"
                                             id="{{ str()->slug($opsi->nama) . $loop->iteration }}"
                                             name="{{ str()->slug($opsi->nama) }}" value="{{ $item->id }}"
-                                            @checked(request(str()->slug($opsi->nama)) == $item->id)>
+                                            @checked(request(str()->slug($opsi->nama)) == $item->id) required>
+
                                         <label for="{{ str()->slug($opsi->nama) . $loop->iteration }}">{{ $item->label }}
-                                            (Rp {{ number_format($item->harga) }})
+                                            @if ($item->harga != '0')
+                                                (Rp {{ number_format($item->harga) }})
+                                            @endif
                                         </label>
                                     </div>
                                 @endforeach
                             </div>
                         @endforeach
+
 
                         @if ($jasa->jumlah_maksimal > 1)
                             <p for="jumlah" class="mb-2 mt-2">Jumlah</p>
@@ -133,7 +140,7 @@
                         @endif
 
                         <button type="submit" class="btn btn-outline-dark btn-sm me-2">
-                            Beli Sekarang ->
+                            Pesan Sekarang ->
                         </button>
 
                         <a class="btn btn-dark btn-sm me-2"

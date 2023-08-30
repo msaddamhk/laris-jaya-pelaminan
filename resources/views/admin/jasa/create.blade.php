@@ -159,10 +159,22 @@
 @endsection
 
 @push('scripts')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#summernote').summernote({
                 height: 435
+            });
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 435,
+                toolbar: [
+                    ['style', ['italic', 'underline', 'clear', 'bold']],
+                    ['insert', ['link']],
+                ],
             });
         });
     </script>
