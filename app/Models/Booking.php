@@ -22,12 +22,17 @@ class Booking extends Model
         return $this->belongsTo(Pemesanan::class);
     }
 
-    public function bookingStatus()
+    public function jasa()
     {
-        if ($this->pemesanan->metode_pembayaran === 'cod' || $this->pemesanan->created_at->addHours(1)->diffInMinutes(now(), false) < 0) {
-            return true;
-        }
-
-        return $this->pemesanan->status_pembayaran;
+        return $this->belongsTo(Jasa::class);
     }
+
+    // public function bookingStatus()
+    // {
+    //     if ($this->pemesanan->metode_pembayaran === 'cod' || $this->pemesanan->created_at->addHours(1)->diffInMinutes(now(), false) < 0) {
+    //         return true;
+    //     }
+
+    //     return $this->pemesanan->status_pembayaran;
+    // }
 }
