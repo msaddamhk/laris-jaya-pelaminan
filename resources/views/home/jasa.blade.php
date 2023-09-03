@@ -66,6 +66,11 @@
                                     <h5 class="card-title fw-bold mb-1 mt-2"> {{ $item->nama }}</h5>
                                     <p class="card-text" style="color: #a1947c">Rp {{ number_format($item->harga) }}</p>
                                 </div>
+                                <a class="btn btn-dark btn-sm me-2 mt-2"
+                                    href="https://web.whatsapp.com/send?phone=62895600765363&text=Halo%20Admin%2C%20saya%20ingin%20melakukan%20konsultasi%20mengenai%20{{ $item->nama }}"
+                                    target="_blank">
+                                    <i class="bi bi-whatsapp"></i> Konsultasi
+                                </a>
                             </div>
                         </a>
                     </div>
