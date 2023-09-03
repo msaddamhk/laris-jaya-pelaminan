@@ -114,7 +114,7 @@
                                         <div class="col-4 col-md-3 mx-auto">
                                             <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $item->id }}" style="font-size: 8px">
-                                                Lihat Detail Opsi
+                                                Lihat Detail Item
                                             </button>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{ $opsi->nama }}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Detail Item</h5>
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
