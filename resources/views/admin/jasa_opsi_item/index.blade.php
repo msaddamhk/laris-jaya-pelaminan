@@ -35,7 +35,7 @@
                 <tr>
                     <th>No</th>
                     <th>Label</th>
-                    {{-- <th>Value</th> --}}
+                    <th>Deskripsi</th>
                     <th>Harga</th>
                     <th>Aksi</th>
                 </tr>
@@ -45,7 +45,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $items->label }}</td>
-                        {{-- <td>{{ $items->value }}</td> --}}
+                        <td>{{ $items->deskripsi }}</td>
                         <td>Rp {{ number_format($items->harga) }}</td>
                         <td>
                             <a href="{{ route('opsi.item.edit', [$jasa, $jasaopsi, $items]) }}"
@@ -66,6 +66,5 @@
                 @endforelse
             </tbody>
         </table>
-
     </div>
 @endsection

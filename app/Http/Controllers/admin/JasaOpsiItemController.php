@@ -25,6 +25,7 @@ class JasaOpsiItemController extends Controller
     {
         $request->validate([
             'label' => 'required',
+            'deskripsi' => 'required',
             'harga' => 'required|integer',
             'modal' => 'required|integer',
 
@@ -34,6 +35,7 @@ class JasaOpsiItemController extends Controller
             "opsi_jasa_id" => $jasaopsi->id,
             "label" => $request->label,
             "value" => $request->label,
+            "deskripsi" => $request->deskripsi,
             "modal" => $request->modal,
             "harga" => $request->harga,
         ]);
@@ -51,12 +53,14 @@ class JasaOpsiItemController extends Controller
     {
         $request->validate([
             'label' => 'required',
+            'deskripsi' => 'required',
             'harga' => 'required|integer',
             'modal' => 'required|integer',
         ]);
 
         $jasaopsiitem->label = $request->label;
         $jasaopsiitem->value = $request->label;
+        $jasaopsiitem->deskripsi = $request->deskripsi;
         $jasaopsiitem->modal = $request->modal;
         $jasaopsiitem->harga = $request->harga;
         $jasaopsiitem->save();

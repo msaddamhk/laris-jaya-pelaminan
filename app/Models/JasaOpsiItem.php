@@ -17,6 +17,7 @@ class JasaOpsiItem extends Model
         'value',
         'modal',
         'harga',
+        'deskripsi',
         'foto',
     ];
 

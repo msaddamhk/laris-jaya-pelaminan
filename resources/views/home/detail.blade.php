@@ -42,7 +42,6 @@
                     <p style="color: rgb(55, 55, 55); font-weight: 400; font-size: 12px;text-align:justify">
                         {!! $jasa->deskripsi !!}
                     </p>
-
                 </div>
 
                 <div class="col-md-4 my-aut card p-4" data-aos="fade-in" data-aos-delay="350">
@@ -80,7 +79,6 @@
                                             placeholder="Tanggal Akhir" required>
                                     </div>
                                 </div>
-
                             </div>
                         @else()
                             <div class="input-group mb-3">
@@ -89,29 +87,36 @@
                             </div>
                         @endif
 
-                        <input type="text" name="jasa" class="form-control" value="{{ $jasa->id }}"
-                            id="datepicker" placeholder="Select a date" hidden>
+                        <input type="hidden" name="jasa" class="form-control" value="{{ $jasa->id }}">
 
                         <p class="mt-2">Custom Pesanan</p>
 
                         <hr>
 
-
                         @foreach ($jasa->jasaOpsi as $opsi)
                             <h6 class="mb-2">{{ $opsi->nama }}</h6>
                             <div class="">
                                 @foreach ($opsi->jasaItems->sortBy('harga') as $item)
-                                    <div style="font-size: 13px">
-                                        <input class="mb-3" type="{{ $opsi->tipe }}"
-                                            id="{{ str()->slug($opsi->nama) . $loop->iteration }}"
-                                            name="{{ str()->slug($opsi->nama) }}" value="{{ $item->id }}"
-                                            @checked(request(str()->slug($opsi->nama)) == $item->id) required>
+                                    <div class="row" style="font-size: 13px">
+                                        <div class="col-8 col-md-9">
+                                            <input class="mb-3" type="{{ $opsi->tipe }}"
+                                                id="{{ str()->slug($opsi->nama) . $loop->iteration }}"
+                                                name="{{ str()->slug($opsi->nama) }}" value="{{ $item->id }}"
+                                                @checked(request(str()->slug($opsi->nama)) == $item->id) required>
 
-                                        <label for="{{ str()->slug($opsi->nama) . $loop->iteration }}">{{ $item->label }}
-                                            @if ($item->harga != '0')
-                                                (Rp {{ number_format($item->harga) }})
-                                            @endif
-                                        </label>
+                                            <label
+                                                for="{{ str()->slug($opsi->nama) . $loop->iteration }}">{{ $item->label }}
+                                                @if ($item->harga != '0')
+                                                    (Rp {{ number_format($item->harga) }})
+                                                @endif
+                                            </label>
+                                        </div>
+                                        <div class="col-4 col-md-3 mx-auto">
+                                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal{{ $item->id }}" style="font-size: 8px">
+                                                Lihat Detail Opsi
+                                            </button>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -148,10 +153,38 @@
                             target="_blank">
                             <i class="bi bi-whatsapp"></i> Konsultasi
                         </a>
-
                     </form>
                 </div>
             </div>
+
+            @foreach ($jasa->jasaOpsi as $opsi)
+                @foreach ($opsi->jasaItems->sortBy('harga') as $item)
+                    <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ $opsi->nama }}</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Nama item: {{ $item->label }}</p>
+                                    <p>Harga: Rp {{ number_format($item->harga) }}</p>
+                                    <p>Deskripsi:</p>
+                                    <hr>
+                                    <p>{{ $item->deskripsi }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        data-bs-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endforeach
         </div>
     </section>
 @endsection
