@@ -23,6 +23,7 @@ class Jasa extends Model
         'tipe_unit',
         'jumlah_minimal',
         'jumlah_maksimal',
+        'jumlah_pesanan',
         'status_pengembalian',
     ];
 

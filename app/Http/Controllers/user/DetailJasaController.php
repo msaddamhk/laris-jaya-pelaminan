@@ -46,7 +46,7 @@ class DetailJasaController extends Controller
 
         $tanggalpesanan = $tanggalpesanan->filter(fn ($item) => ($item['status_pembayaran'] || !$item['expired'] || $item['metode_pembayaran']))->pluck('tanggal');
         $jumlahPesananPerTanggal = $tanggalpesanan->countBy();
-        $jumlahMaksimal = $jasa->jumlah_maksimal;
+        $jumlahMaksimal = $jasa->jumlah_pesanan;
 
         $tanggalTerlaluBanyak = $jumlahPesananPerTanggal->filter(function ($jumlahPesanan) use ($jumlahMaksimal) {
             return $jumlahPesanan >= $jumlahMaksimal;

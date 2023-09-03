@@ -146,6 +146,15 @@
             </div>
 
             <div class="form-group mb-3">
+                <label for="jumlah_pesanan">Jumlah Pesanan</label>
+                <input type="number" class="form-control @error('jumlah_pesanan') is-invalid @enderror"
+                    id="jumlah_pesanan" name="jumlah_pesanan" value="{{ old('jumlah_pesanan') }}">
+                @error('jumlah_pesanan')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
                 <label for="foto">Foto</label>
                 <input type="file" class="form-control" id="foto" name="foto[]" multiple>
                 @error('foto')

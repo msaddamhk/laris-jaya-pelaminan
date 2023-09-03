@@ -46,6 +46,7 @@ class JasaController extends Controller
             'tipe_unit' => 'required|string|max:255',
             'jumlah_minimal' => 'required|integer',
             'jumlah_maksimal' => 'required|integer',
+            'jumlah_pesanan' => 'required|integer',
             'foto' => 'required|array',
             'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_cod' => 'required|boolean',
@@ -54,14 +55,6 @@ class JasaController extends Controller
         ]);
 
         $jasa = Jasa::create($request->except('foto'));
-
-        // foreach ($request->file('foto') as $fotoFile) {
-        //     $request->foto?->store('public/jasa_foto');
-        //     $jasaFoto = new JasaFoto();
-        //     $jasaFoto->foto = $request->foto ? $request->foto->hashName() : null;
-        //     $jasaFoto->jasa_id = $jasa->id;
-        //     $jasaFoto->save();
-        // }
 
         foreach ($request->file('foto') as $fotoFile) {
             if ($fotoFile) {
@@ -108,6 +101,7 @@ class JasaController extends Controller
             'tipe_unit' => 'required|string|max:255',
             'jumlah_minimal' => 'required|integer',
             'jumlah_maksimal' => 'required|integer',
+            'jumlah_pesanan' => 'required|integer',
             // 'foto' => 'nullable|array',
             // 'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_cod' => 'required|boolean',
