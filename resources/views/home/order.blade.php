@@ -48,10 +48,15 @@
                                             <p class="my-auto ms-3">{{ $jasa->nama }}</p>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control" name="jumlah" id="jumlahInput"
-                                                value="{{ request()->get('jumlah') }}" max="{{ $jasa->jumlah_maksimal }}"
-                                                min="{{ $jasa->jumlah_minimal }}" oninput="validity.valid||(value='');"
-                                                id="exampleFormControlInput1" placeholder="" required />
+                                            @if ($jasa->jumlah_maksimal > 1)
+                                                <input type="number" class="form-control" name="jumlah" id="jumlahInput"
+                                                    value="{{ request()->get('jumlah') }}"
+                                                    max="{{ $jasa->jumlah_maksimal }}" min="{{ $jasa->jumlah_minimal }}"
+                                                    oninput="validity.valid||(value='');" id="exampleFormControlInput1"
+                                                    placeholder="" required />
+                                            @else
+                                                {{ request()->get('jumlah') }}
+                                            @endif
                                         </td>
                                         <td>
                                             @php

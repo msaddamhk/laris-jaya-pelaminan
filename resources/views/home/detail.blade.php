@@ -122,7 +122,6 @@
                             </div>
                         @endforeach
 
-
                         @if ($jasa->jumlah_maksimal > 1)
                             <p for="jumlah" class="mb-2 mt-2">Jumlah</p>
                             <div class="input-group">
@@ -133,6 +132,12 @@
                             <p for="jumlah" class="text-secondary" style="font-size: 13px">Maksimum
                                 Pesanan <b class="text-danger fs-6">{{ $jasa->jumlah_maksimal }}</b> dan minimun
                                 pesanan <b class="text-danger fs-6">{{ $jasa->jumlah_minimal }}</b></p>
+                        @else
+                            <div class="input-group">
+                                <input type="hidden" name="jumlah" class="form-control" id="jumlah" value="1"
+                                    placeholder="jumlah" max="{{ $jasa->jumlah_maksimal }}"
+                                    min="{{ $jasa->jumlah_minimal }}" oninput="validity.valid||(value='');" required>
+                            </div>
                         @endif
 
                         <button type="submit" class="btn btn-outline-dark btn-sm me-2">

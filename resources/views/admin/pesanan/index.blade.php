@@ -209,10 +209,43 @@
 
                 <div class="">
                     @if ($item->bukti_pembayaran !== 'null')
-                        <a class="btn btn-primary btn-sm"
-                            href="{{ asset('/storage/bukti_pembayaran/' . $item->bukti_pembayaran) }}" download>
-                            Unduh Bukti Pembayaran
-                        </a>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal{{ $item->id }}">
+                            Lihat Bukti Pembayaran
+                        </button>
+
+                        <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Invoice</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{{ asset('/storage/bukti_pembayaran/' . $item->bukti_pembayaran) }}">
+                                            <img src="{{ asset('/storage/bukti_pembayaran/' . $item->bukti_pembayaran) }}"
+                                                alt="" width="100%">
+                                        </a>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{{ asset('/storage/bukti_pembayaran/' . $item->bukti_pembayaran) }}"
+                                            download>
+                                            Unduh Bukti Pembayaran
+                                        </a>
+
+                                        <button type="button" class="btn btn-secondary btn-sm"
+                                            data-bs-dismiss="modal">Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
                     @if ($item->metode_pembayaran == 'cod')
