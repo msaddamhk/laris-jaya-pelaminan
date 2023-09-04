@@ -1,4 +1,4 @@
-@extends('layout.admin.main')
+@extends('Layout.admin.main')
 
 @push('heads')
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

@@ -1,4 +1,4 @@
-@extends('layout.admin.main')
+@extends('Layout.admin.main')
 
 
 @push('heads')
