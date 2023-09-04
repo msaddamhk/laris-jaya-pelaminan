@@ -149,10 +149,12 @@
 
                 <div class="">
                     @if ($item->status_pembayaran == '1')
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal{{ $item->id }}">
-                            Lihat Bukti Pembayaran
-                        </button>
+                        @if ($item->metode_pembayaran != 'cod')
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal{{ $item->id }}">
+                                Lihat Bukti Pembayaran
+                            </button>
+                        @endif
 
                         <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">

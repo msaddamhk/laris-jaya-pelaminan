@@ -51,12 +51,13 @@
                             Laris Jaya Pelaminan
                         </h2>
                         <p style="color: rgb(55, 55, 55); font-weight: 400; font-size: 12px;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                            totam magnam neque qui, doloribus non suscipit ab mollitia
-                            dolorem, nam eveniet, ducimus eius tenetur aperiam sit
-                            cupiditate explicabo commodi velit.
+                            Laris Jaya Pelaminan merupakan suatu bentuk usaha perorangan yang bergerak di bidang penyediaan
+                            jasa pelaksanaan pernikahan. Bermula dari kesenangan mengurus acara-acara keluarga, teman,
+                            sahabat dan saudara seperti pernikahan, ulang tahun, dan lain-lain. Usaha wedding organizer ini
+                            berdiri tahun 7 februari 2001 yang beralamat di Jalan Tengku Iskandar, Gampong Lamteh, Kecamatan
+                            Ulee Kareng Kota Banda Aceh. Sejauh ini ada beberapa Vendor yang sudah bekerja sama dengan Laris
+                            Jaya Pelaminan.
                         </p>
-                        {{-- <a href="" class="text-decoration-none" style="color: #a1947c">Baca Lebih Lanjut-></a> --}}
                     </div>
                 </div>
             </div>

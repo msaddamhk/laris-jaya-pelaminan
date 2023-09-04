@@ -25,9 +25,12 @@
 
             <select class="form-select mb-3" name="catatan_pembayaran" aria-label="Default select example"
                 onchange="updateTotal()">
-                <option disabled>Pilih</option>
+                <option selected disabled>Pilih</option>
                 <option value="lunas" {{ $pemesanan->catatan_pembayaran === 'lunas' ? 'selected' : '' }}>Lunas</option>
                 <option value="25%" {{ $pemesanan->catatan_pembayaran === '25%' ? 'selected' : '' }}>25%</option>
+                <option value="25%" {{ $pemesanan->catatan_pembayaran === '35%' ? 'selected' : '' }}>35%</option>
+                <option value="25%" {{ $pemesanan->catatan_pembayaran === '55%' ? 'selected' : '' }}>55%</option>
+                <option value="25%" {{ $pemesanan->catatan_pembayaran === '75%' ? 'selected' : '' }}>75%</option>
             </select>
 
             <button type="submit" class="btn btn-primary">Update</button>
