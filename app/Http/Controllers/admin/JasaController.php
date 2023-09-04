@@ -47,8 +47,6 @@ class JasaController extends Controller
             'jumlah_minimal' => 'required|integer',
             'jumlah_maksimal' => 'required|integer',
             'jumlah_pesanan' => 'required|integer',
-            'foto' => 'required|array',
-            'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_cod' => 'required|boolean',
             'banyak_hari' => 'required|boolean',
             'status_pengembalian' => 'required|boolean',

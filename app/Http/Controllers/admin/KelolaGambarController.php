@@ -48,7 +48,7 @@ class KelolaGambarController extends Controller
         $JasaFoto = $jasafoto;
 
         $request->validate([
-            'foto' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         if ($request->hasFile('foto')) {

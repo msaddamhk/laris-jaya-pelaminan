@@ -79,7 +79,7 @@ class GaleriController extends Controller
         $request->validate([
             'judul' => 'required|max:255',
             'kategori_galeri_id' => 'required|exists:kategori_galeri,id',
-            'foto' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         if ($request->hasFile('foto')) {

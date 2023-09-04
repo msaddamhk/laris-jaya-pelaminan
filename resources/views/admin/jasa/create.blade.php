@@ -156,7 +156,8 @@
 
             <div class="form-group mb-3">
                 <label for="foto">Foto</label>
-                <input type="file" class="form-control" id="foto" name="foto[]" multiple>
+                <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto"
+                    name="foto[]" multiple>
                 @error('foto')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -168,14 +169,6 @@
 @endsection
 
 @push('scripts')
-    {{-- <script>
-        $(document).ready(function() {
-            $('#summernote').summernote({
-                height: 435
-            });
-        });
-    </script> --}}
-
     <script>
         $(document).ready(function() {
             $('#summernote').summernote({

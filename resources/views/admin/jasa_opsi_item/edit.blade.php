@@ -19,8 +19,8 @@
         @csrf
         <div class="form-group mb-3">
             <label for="label" class="mb-2">Label</label>
-            <input type="text" class="form-control" id="label" name="label" value="{{ $jasaopsiitem->label }}"
-                required>
+            <input type="text" class="form-control @error('label') is-invalid @enderror" id="label" name="label"
+                value="{{ $jasaopsiitem->label }}" required>
             @error('label')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -29,7 +29,8 @@
         <div class="mb-3">
             <label class="mb-1">Deskripsi</label>
             <div class="form-group">
-                <textarea class="form-control form-control-sm" id="summernote" name="deskripsi" rows="50" required>
+                <textarea class="form-control form-control-sm @error('deskripsi') is-invalid @enderror" id="summernote" name="deskripsi"
+                    rows="50" required>
                     {!! old('deskripsi', $jasaopsiitem->deskripsi) !!} 
             </textarea>
                 @error('deskripsi')
@@ -40,8 +41,8 @@
 
         <div class="form-group mb-3">
             <label for="modal" class="mb-2">Modal</label>
-            <input type="number" class="form-control" id="modal" name="modal" value="{{ $jasaopsiitem->modal }}"
-                required>
+            <input type="number" class="form-control @error('modal') is-invalid @enderror" id="modal" name="modal"
+                value="{{ $jasaopsiitem->modal }}" required>
             @error('modal')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -49,8 +50,8 @@
 
         <div class="form-group mb-3">
             <label for="harga" class="mb-2">Harga</label>
-            <input type="number" class="form-control" id="harga" name="harga" value="{{ $jasaopsiitem->harga }}"
-                required>
+            <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga"
+                value="{{ $jasaopsiitem->harga }}" required>
             @error('harga')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
