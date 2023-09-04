@@ -136,7 +136,6 @@
             const button = document.getElementsByTagName("button")[0];
             const nav_links = document.querySelectorAll(".navlinkcolor");
             window.addEventListener("scroll", function() {
-                console.log(window.scrollY);
                 if (window.scrollY > 10) {
                     navbar.classList.replace("bg-transparent", "navcolor");
                 } else if (this.window.scrollY <= 0) {
