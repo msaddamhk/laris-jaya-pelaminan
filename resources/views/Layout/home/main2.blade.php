@@ -47,7 +47,7 @@
     <nav class="navbar navbar-expand-lg bg-black py-3">
         <div class="container text-center">
             <a class="navbar-brand text-white" href="{{ route('home') }}">
-                <img src="{{ asset('asset/gambar/logo2.png') }}" alt="" width="100%" height="40" />
+                <img src="{{ asset('asset/gambar/logo2.png') }}" alt="" width="85" height="32" />
             </a>
 
             <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
