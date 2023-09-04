@@ -56,6 +56,11 @@
                                                     placeholder="" required />
                                             @else
                                                 {{ request()->get('jumlah') }}
+                                                <input type="hidden" class="form-control" name="jumlah" id="jumlahInput"
+                                                    value="{{ request()->get('jumlah') }}"
+                                                    max="{{ $jasa->jumlah_maksimal }}" min="{{ $jasa->jumlah_minimal }}"
+                                                    oninput="validity.valid||(value='');" id="exampleFormControlInput1"
+                                                    placeholder="" required />
                                             @endif
                                         </td>
                                         <td>
@@ -157,8 +162,8 @@
                             <h6 class="fw-bold" id="total-harga">Total : Rp {{ number_format($totalHarga) }}</h6>
                             <h6 class="fw-bold">Catatan Pembayaran</h6>
                             <hr>
-                            <select class="form-select mb-3" name="catatan_pembayaran" aria-label="Default select example"
-                                onchange="updateTotal()" required>
+                            <select class="form-select mb-3" name="catatan_pembayaran"
+                                aria-label="Default select example" onchange="updateTotal()" required>
                                 <option selected disabled>Pilih</option>
                                 <option value="lunas">Lunas</option>
                                 @if ($totalHarga >= 20000000)
@@ -184,9 +189,17 @@
                                     <p class="text-muted">Atas Nama : {{ $item->atas_nama }}</p>
                                 @endforeach
                                 <p class="mb-2">Upload Bukti Pembayaran</p>
-                                <input type="file" class="form-control mb-2" name="bukti_pembayaran">
+
+                                <input type="file"
+                                    class="form-control mb-2 @error('bukti_pembayaran') is-invalid @enderror"
+                                    name="bukti_pembayaran">
                                 <small class="" style="font-size: 12px">Silahkan Lewati jika ingin membayar
                                     nanti, batas pembayaran 1 jam setelah pesanan di buat</small>
+
+                                @error('bukti_pembayaran')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+
                             </div>
                             <button type="submit" class="btn btn-success btn-sm" style="font-size: 12px"
                                 @if (auth()->user()->no_hp === null || auth()->user()->alamat === null) disabled @endif>

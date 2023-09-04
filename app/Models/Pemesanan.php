@@ -35,6 +35,11 @@ class Pemesanan extends Model
         return $this->hasMany(Booking::class);
     }
 
+    public function buktiPembayaran()
+    {
+        return $this->hasMany(BuktiPembayaran::class);
+    }
+
     public function jumlahhari()
     {
         return $this->booking()->count();

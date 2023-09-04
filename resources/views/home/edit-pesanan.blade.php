@@ -17,7 +17,11 @@
                         </div>
                     @endif
                     <small>Upload Bukti Pembayaran</small>
-                    <input type="file" class="form-control mb-4 mt-2" name="bukti_pembayaran">
+                    <input type="file" class="form-control mb-4 mt-2 @error('bukti_pembayaran') is-invalid @enderror"
+                        name="bukti_pembayaran">
+                    @error('bukti_pembayaran')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                     <button type="submit" class="btn btn-success btn-sm" style="font-size: 12px">
                         <i class="bi bi-wallet"></i> Submit
                     </button>

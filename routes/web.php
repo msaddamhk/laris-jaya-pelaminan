@@ -148,6 +148,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/kelola-pemesanan/{pemesanan}/edit', [KelolaPesananController::class, 'edit'])
             ->name('pemesanan.edit');
 
+        Route::delete('/kelola-pemesanan/{pemesanan}/hapus_user', [KelolaPesananController::class, 'hapus_user'])
+            ->name('pemesanan.hapus_user');
+
         Route::put('/kelola-pemesanan/{pemesanan}/edit/update', [KelolaPesananController::class, 'update'])
             ->name('pemesanan.update');
 

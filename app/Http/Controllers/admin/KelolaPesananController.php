@@ -44,7 +44,6 @@ class KelolaPesananController extends Controller
 
     public function pemesanan_item_update(Request $request, PemesananItem $pemesanan_item)
     {
-
         $request->validate([
             'status_pengembalian_barang' => 'required',
         ]);
@@ -53,5 +52,11 @@ class KelolaPesananController extends Controller
         $pemesanan_item->save();
 
         return redirect()->route('pemesanan.index')->with('success', 'Data Berhasi di Update');
+    }
+
+    public function hapus_user(Pemesanan $pemesanan)
+    {
+        $pemesanan->user->delete();
+        return redirect()->route('pemesanan.index')->with('success', 'User Berhasi di Hapus');
     }
 }

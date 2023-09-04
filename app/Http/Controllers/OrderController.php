@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\BuktiPembayaran;
 use App\Models\Jasa;
 use App\Models\JasaOpsiItem;
 use App\Models\Pemesanan;
@@ -95,26 +96,34 @@ class OrderController extends Controller
 
 
         if ($jasa) {
-
             $code = 'PESANAN-' . mt_rand(0000, 9999);
             $noPemesanan = $code;
             $pemesanan = new Pemesanan();
             $pemesanan->user_id = auth()->user()->id;
             $pemesanan->no_pemesanan = $noPemesanan;
+            $pemesanan->bukti_pembayaran = "null";
             $pemesanan->metode_pembayaran = $request->metode_pembayaran;
             $pemesanan->catatan_pembayaran = $request->catatan_pembayaran;
-
-            $request->bukti_pembayaran?->store('public/bukti_pembayaran');
-
-            if ($request->bukti_pembayaran) {
+            if ($request->hasFile('bukti_pembayaran')) {
                 $pemesanan->status_pembayaran = true;
-                $pemesanan->bukti_pembayaran = $request->bukti_pembayaran->hashName();
             } else {
                 $pemesanan->status_pembayaran = false;
-                $pemesanan->bukti_pembayaran = "null";
             }
 
             $pemesanan->save();
+
+            if ($request->hasFile('bukti_pembayaran')) {
+
+                $request->validate([
+                    'bukti_pembayaran' => 'image|mimes:jpeg,png,jpg|max:2048',
+                ]);
+
+                $request->bukti_pembayaran?->store('public/bukti_pembayaran');
+                $bukti_pembayaran = new BuktiPembayaran();
+                $bukti_pembayaran->foto = $request->file('bukti_pembayaran')->hashName();
+                $bukti_pembayaran->pemesanan_id = $pemesanan->id;
+                $bukti_pembayaran->save();
+            }
 
             if ($jasa->banyak_hari == true) {
                 foreach ($tanggalRange as $tanggalBooking) {
@@ -169,13 +178,25 @@ class OrderController extends Controller
     public function update(Request $request, Pemesanan $pemesanan)
     {
         if ($pemesanan->status_pembayaran == "0") {
-            $request->file('bukti_pembayaran')->store('public/bukti_pembayaran');
-            $pemesanan->bukti_pembayaran = $request->file('bukti_pembayaran')->hashName();
+            $request->validate([
+                'bukti_pembayaran' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+            $request->bukti_pembayaran?->store('public/bukti_pembayaran');
+            $bukti_pembayaran = new BuktiPembayaran();
+            $bukti_pembayaran->foto = $request->bukti_pembayaran->hashName();
+            $bukti_pembayaran->pemesanan_id = $pemesanan->id;
+            $bukti_pembayaran->save();
             $pemesanan->status_pembayaran = true;
             $pemesanan->save();
         } else {
-            $request->file('bukti_pembayaran')->store('public/bukti_pembayaran');
-            $pemesanan->bukti_pembayaran = $request->file('bukti_pembayaran')->hashName();
+            $request->validate([
+                'bukti_pembayaran' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+            $request->bukti_pembayaran?->store('public/bukti_pembayaran');
+            $bukti_pembayaran = new BuktiPembayaran();
+            $bukti_pembayaran->foto = $request->bukti_pembayaran->hashName();
+            $bukti_pembayaran->pemesanan_id = $pemesanan->id;
+            $bukti_pembayaran->save();
             $pemesanan->catatan_pembayaran = "lunas";
             $pemesanan->save();
         }
