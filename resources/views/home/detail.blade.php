@@ -32,7 +32,8 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-md-8" data-aos="fade-in" data-aos-delay="300">
+
+                <div class="col-md-8" data-aos="fade-in" data-aos-delay="300" style="height: 100%;">
                     <h1 class="ps-2"
                         style="color: rgb(55, 55, 55); font-weight: 800; font-size: 20px;  border-left: 5px solid #a1947c">
                         Deskripsi
@@ -44,7 +45,7 @@
                     </p>
                 </div>
 
-                <div class="col-md-4 my-aut card p-4" data-aos="fade-in" data-aos-delay="350">
+                <div class="col-md-4 card p-4" data-aos="fade-in" data-aos-delay="350" style="height: 100%;">
 
                     <h5 class="text-uppercase fw-bold mt-2 mt-lg-0" style="color: #a1947c" data-aos="fade-in"
                         data-aos-delay="100">
@@ -56,7 +57,6 @@
                             Rp {{ number_format($jasa->harga) }}
                         </h6>
                     @endif
-
 
                     <hr />
 
