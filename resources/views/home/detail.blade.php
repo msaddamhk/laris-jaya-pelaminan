@@ -170,7 +170,7 @@
                                     <p>Harga: Rp {{ number_format($item->harga) }}</p>
                                     <p>Deskripsi:</p>
                                     <hr>
-                                    <p>{{ $item->deskripsi }}</p>
+                                    <p>{!! $item->deskripsi !!}</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary btn-sm"
@@ -181,6 +181,7 @@
                     </div>
                 @endforeach
             @endforeach
+
         </div>
     </section>
 @endsection

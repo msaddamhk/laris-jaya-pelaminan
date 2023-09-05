@@ -10,7 +10,7 @@
 
 @section('content')
     <div>
-        <h5>Create Jasa</h5>
+        <h5>TambahJasa</h5>
 
         <hr>
 
